@@ -1,4 +1,3 @@
-
 let startup = Date.now();
 
 const Emojis = {

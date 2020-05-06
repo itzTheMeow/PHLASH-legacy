@@ -1,21 +1,21 @@
 {
-    "name": "my-bot",
-    "version": "0.0.1",
-    "description": "A simple discord bot with a command handler.",
-    "main": "bot.js",
-    "scripts": {
-      "start": "node bot.js"
-    },
-    "dependencies": {
-      "discord.js": "^11.6.4",
-      "dotenv": "^8.2.0",
-      "moment": "^2.25.3",
-      "ms": "^2.1.2",
-      "random-puppy": "^1.1.0",
-      "weather-js": "^2.0.0"
-    },
-    "engines": {
-      "node": "8.x"
-    },
-    "license": "MIT"
-  }
+  "name": "my-bot",
+  "version": "0.0.1",
+  "description": "A simple discord bot with a command handler.",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "discord.js": "^11.6.4",
+    "dotenv": "^8.2.0",
+    "moment": "^2.25.3",
+    "ms": "^2.1.2",
+    "random-puppy": "^1.1.0",
+    "weather-js": "^2.0.0"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "license": "MIT"
+}
