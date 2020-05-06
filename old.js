@@ -1,56 +1,6 @@
 
 let startup = Date.now();
 
-const Embeds = {
-  help: new Discord.RichEmbed()
-    .setTitle("Commands")
-    .setColor(config.color)
-    .addField("`memer`", "Send a meme in chat.")
-    .addField("`help`", "See this menu!")
-    .addField("`userinfo [member]`", "Get info about a user.")
-    .addField("`weather [area]`", "Get the weather for an area.")
-    .addField("`server`", "See the server's info.")
-    .addField("`prune [number]`", "Delete the specified number of messages.")
-    .addField("`mute [member]`", "Mute someone >:)")
-    .addField("`unmute [member]`", "Unmute someone.")
-    .addField("`rules`", "See the server rules.")
-    .addField("`prices`", "Get the prices for bots.")
-    .addField("`apply-bot` (DM Only)", "Make a bot request.")
-    .addField("`apply-dev` (DM Only)", "Make a developer application."),
-  rules: new Discord.RichEmbed()
-    .setTitle("Server Rules")
-    .setColor(config.color)
-    .addField(
-      "**1.** No NSFW",
-      "No NSFW is allowed in any of the channels. NSFW posted by anyone will result in a kick from our server."
-    )
-    .addField(
-      "**2.**No Racism",
-      "No RACISM. Everyone is equal in this server. In the year  2020, racism should not be a thing. Any racist abuse towards anyone will result in a kick from our server."
-    )
-    .addField(
-      "**3.** USE RIGHT CHANNELS",
-      "Please use the appropriate channels. The punishment ladder for this rule goes as follows: Warning, Warning, Mute, Kick."
-    )
-    .addField(
-      "**4.** Read Rules!",
-      "'I didn't read the rules' is NOT an excuse. Punishment is the same for everyone (including staff) regardless of if you have read the server rules or not."
-    )
-    .addField(
-      "**5.** NO pinging!",
-      "Do not ping any of the Devs, Admins, Moderators or Owner unless they have told you to. If you have any questions, just ask and someone will definitely come to your aid. "
-    )
-    .addField(
-      "**6.** NO spamming!",
-      "Do not spam. Spamming will result in a warn, then a mute, and then a ban if it is continued. Mass pinging will result in an immediate ban from our server."
-    )
-    .setFooter(
-      "We are glad that you decided to join as a member of the Phlame Development!"
-    ),
-};
-
-const Cooldowns = {};
-
 const Emojis = {
   done: "<:Done:664324664536989726>",
   pending: "<:Pending:664324665082380298>",
