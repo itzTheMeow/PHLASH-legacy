@@ -58,52 +58,6 @@ client.on("message", async (message) => {
         })
         .catch((err) => console.error(err));
       break;
-    case "setgame":
-      if (message.member.isAdmin()) {
-        if (!args[0]) return message.reply("What is my new game?");
-        let setString = args[0];
-
-        if (!args[1]) {
-          message.channel.send(":x: Please specify a game!");
-          return;
-        }
-        let game = args.slice(1).join(" ");
-
-        if (
-          setString !== "playing" &&
-          setString !== "streaming" &&
-          setString !== "listening" &&
-          setString !== "watching"
-        ) {
-          message.channel.send(":x: Please specify a **valid** gametype.");
-          return;
-        }
-
-        message.channel.send(
-          "Changing the game to **" +
-            game +
-            "** with a gametype of *" +
-            setString +
-            "*."
-        );
-
-        if (setString == "playing") {
-          client.user.setActivity(game, { type: "PLAYING" });
-        } else if (setString == "streaming") {
-          client.user.setActivity(game, {
-            type: "STREAMING",
-            url: "https://twitch.tv/meowmeowcatpersonthing",
-          });
-        } else if (setString == "listening") {
-          if (args[1] == "to") game = args.slice(2).join(" ");
-          client.user.setActivity(game, { type: "LISTENING" });
-        } else if (setString == "watching") {
-          client.user.setActivity(game, { type: "WATCHING" });
-        }
-      } else {
-        message.reply("you are not a server admin!");
-      }
-      break;
     case "newbie":
     case "newmembers":
       message.delete();
@@ -217,72 +171,6 @@ client.on("message", async (message) => {
     case "rules":
       message.channel.send(Embeds.rules.setThumbnail(message.guild.iconURL));
       break;
-    case "kick":
-    case "k":
-      let toKick =
-        message.mentions.members.first() || message.guild.members.get(args[0]);
-      if (!toKick) {
-        if (!toKick.kickable) {
-          let reason = args.slice(1).join(" ") || "No reason provided.";
-
-          message.delete();
-          toKick
-            .kick(reason)
-            .catch((error) =>
-              message.reply(
-                `Sorry ${message.author} I couldn't kick because of : ${error}`
-              )
-            );
-
-          message.reply(
-            `${toKick.user.tag} has been kicked by ${message.author.tag}.\n**Reason:** ${reason}`
-          );
-        } else {
-          message.reply(
-            "I cannot kick this user! Do they have a higher role or do I have kick permissions?"
-          );
-        }
-      } else {
-        message.reply("Please mention a valid member of this server!");
-      }
-      break;
-    case "warn":
-    case "w":
-      if (message.member.isStaff()) {
-        let toWarn =
-          message.mentions.users.first() || message.guild.members.get(args[0]);
-        if (!toWarn) {
-          let reason = args.slice(2).join(" ") || "No reason provided.";
-
-          var warningEmbed = new Discord.RichEmbed()
-            .setColor("#FF0000")
-            .setAuthor(message.author.username, message.author.avatarURL)
-            .setTitle(`You've been warned in ${message.guild.name}`)
-            .addField("Warned by", message.author.tag)
-            .addField("Reason", reason)
-            .setTimestamp();
-          toWarn.send(warningEmbed);
-
-          message.channel.send("User successfully warned!");
-          message.delete();
-
-          let mentioner = message.mentions.users.first();
-          const logger = new Discord.RichEmbed()
-            .setColor(config.color)
-            .setAuthor(message.author.username, message.author.avatarURL)
-            .setTitle(` ${mentioner.tag} was warned!`)
-            .addField("Warned by", message.author.tag)
-            .addField("Reason", reason)
-            .setTimestamp();
-          client.channels.get("641799745815183362").send(logger);
-        } else {
-          message.reply("mention a user to warn.");
-        }
-      } else {
-        message.reply("you are not server staff!");
-      }
-      break;
-
     case "request-bot":
     case "apply-bot":
     case "request":
