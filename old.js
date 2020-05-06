@@ -150,24 +150,6 @@ client.on("message", async (message) => {
         `**Server Name:** ${message.guild.name}\n**Total Members:** ${message.guild.memberCount}`
       );
       break;
-    case "prune":
-    case "purge":
-    case "clean":
-    case "clear":
-      if (message.member.isStaff()) {
-        let numberToPurge = Number(args[0]);
-        if (numberToPurge) {
-          await message.delete();
-          await message.channel.bulkDelete(numberToPurge);
-        } else {
-          message.channel.send(
-            "You did not specify a valid number of messages to purge!"
-          );
-        }
-      } else {
-        message.reply("you are not server staff!");
-      }
-      break;
     case "rules":
       message.channel.send(Embeds.rules.setThumbnail(message.guild.iconURL));
       break;
