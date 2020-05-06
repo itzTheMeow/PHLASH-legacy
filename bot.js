@@ -2,9 +2,38 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 const fs = require("fs");
 
+const db = {
+  fetch: (key) => {
+    return require("./database.json")[key];
+  },
+  add: (key, value) => {
+    let data = require("./database.json");
+    data[key] = data[key] || 0;
+    data[key] += value;
+    fs.writeFileSync("./database.json", JSON.stringify(data));
+    return data;
+  },
+  subtract: (key, value) => {
+    let data = require("./database.json");
+    data[key] = data[key] || 0;
+    data[key] -= value;
+    fs.writeFileSync("./database.json", JSON.stringify(data));
+    return data;
+  },
+  set: (key, value) => {
+    let data = require("./database.json");
+    data[key] = value;
+    fs.writeFileSync("./database.json", JSON.stringify(data));
+    return data;
+  },
+};
+db.get = db.set;
+db.sub = db.subtract;
+
 const config = require("./config.json");
 bot.prefix = config.prefix;
 bot.config = config;
+bot.db = db;
 
 bot.commands = new Discord.Collection();
 bot.commandDescriptions = new Object();
@@ -34,11 +63,35 @@ fs.readdir("./cmds/", (err, files) => {
   console.log(`Loaded ${jsFiles.length} commands!`);
 });
 
+const { GuildMember } = require("discord.js");
+GuildMember.prototype.isAdmin = function () {
+  return (
+    this.roles.has("") || // Owner
+    this.roles.has("") || // Owner - 40%
+    this.roles.has("") || // Phantom Creator
+    this.roles.has("") || // Head Admin
+    this.roles.has("") || // Admin
+    this.hasPermission("ADMINISTRATOR")
+  );
+};
+GuildMember.prototype.isStaff = function () {
+  return (
+    this.isAdmin() ||
+    this.roles.has("") || // Moderator
+    this.roles.has("") // Phantom Developers
+  );
+};
+
 bot.on("ready", () => {
+  bot.guild = bot.guilds.get("609287873300267008");
   console.log(`Bot ${bot.user.username} is on!`);
-  bot.user.setActivity(bot.guilds.size + " servers. | " + bot.prefix + "help", {
-    type: "WATCHING",
-  });
+
+  bot.user.setActivity(
+    `the phlame burn with ${
+      bot.guild.members.filter((m) => !m.user.bot).size
+    } members!"`,
+    { type: "WATCHING" }
+  );
   bot.user.setStatus("online", null);
 });
 
@@ -46,7 +99,10 @@ bot.on("message", (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(bot.prefix)) {
     let args = message.content.substring(bot.prefix.length).trim().split(/ +/g);
-    let cleanArgs = message.cleanContent.substring(bot.prefix.length).trim().split(/ +/g);
+    let cleanArgs = message.cleanContent
+      .substring(bot.prefix.length)
+      .trim()
+      .split(/ +/g);
 
     let cmd = bot.commands.get(args[0].toLowerCase());
 

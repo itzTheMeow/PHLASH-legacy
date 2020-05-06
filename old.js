@@ -1,60 +1,5 @@
-console.log("Starting PHLASH...");
-("use_strict");
 
-const Discord = require("discord.js");
-const { GuildMember } = require("discord.js");
-const client = new Discord.Client();
-const config = require("./config.json");
-const moment = require("moment");
-const fs = require("fs");
-const ms = require("ms");
-const weather = require("weather-js");
-const https = require("https");
-const randomPuppy = require("random-puppy");
-const real_ms = require("ms");
 let startup = Date.now();
-
-GuildMember.prototype.isAdmin = function () {
-  return (
-    this.roles.has("633871391506038784") || // Owner
-    this.roles.has("648160871750828052") || // Owner - 40%
-    this.roles.has("611825566299062272") || // Phantom Creator
-    this.roles.has("634072123400519709") || // Head Admin
-    this.roles.has("633871480576540722") || // Admin
-    this.hasPermission("ADMINISTRATOR")
-  );
-};
-GuildMember.prototype.isStaff = function () {
-  return (
-    this.isAdmin() ||
-    this.roles.has("633871525287821313") || // Moderator
-    this.roles.has("630386831308881960")
-  ); // Phantom Developers
-};
-
-const db = {
-  fetch: (key) => {
-    return require("./database.json")[key];
-  },
-  add: (key, value) => {
-    let data = (require("./database.json")(data[key] || 0) += value);
-    fs.writeFileSync("./database.json", JSON.stringify(data));
-    return data;
-  },
-  subtract: (key, value) => {
-    let data = (require("./database.json")(data[key] || 0) -= value);
-    fs.writeFileSync("./database.json", JSON.stringify(data));
-    return data;
-  },
-  set: (key, value) => {
-    let data = require("./database.json");
-    data[key] = value;
-    fs.writeFileSync("./database.json", JSON.stringify(data));
-    return data;
-  },
-};
-db.get = db.set;
-db.sub = db.subtract;
 
 const Embeds = {
   help: new Discord.RichEmbed()
@@ -116,18 +61,6 @@ const Emojis = {
   work: "<:Work:684981957322604566>",
   phlame: "<:phlame:706423782402949150>",
 };
-
-client.on("ready", () => {
-  client.guild = client.guilds.get("609287873300267008");
-  client.guild2 = client.guilds.get("618450314567352322");
-
-  setInterval(() => {
-    client.user.setActivity(`THE PHLAME BURN `, { type: "WATCHING" });
-  }, 5000);
-  console.log(
-    `${client.user.username} has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`
-  );
-});
 
 client.on(`message`, function (message) {
   if (message.channel.name === "verify") {
