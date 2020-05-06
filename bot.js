@@ -64,11 +64,8 @@ fs.readdir("./cmds/", (err, files) => {
 const { GuildMember } = require("discord.js");
 GuildMember.prototype.isAdmin = function () {
   return (
-    this.roles.has("") || // Owner
-    this.roles.has("") || // Owner - 40%
-    this.roles.has("") || // Phantom Creator
-    this.roles.has("") || // Head Admin
-    this.roles.has("") || // Admin
+    this.roles.has("") || // Administration
+    this.roles.has("") || // Manager
     this.hasPermission("ADMINISTRATOR")
   );
 };
@@ -76,7 +73,7 @@ GuildMember.prototype.isStaff = function () {
   return (
     this.isAdmin() ||
     this.roles.has("") || // Moderator
-    this.roles.has("") // Phantom Developers
+    this.roles.has("") // Developer
   );
 };
 
@@ -165,6 +162,7 @@ bot.on("guildMemberAdd", (member) => {
     .setTimestamp()
     .setColor(bot.config.color)
     .setDescription(`Welcome, ${member.tag}! Stay to watch the phlame burn!`);
+
 
   client.channels.get("704771723941118033").send(joinEmbed);
 });
