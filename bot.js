@@ -58,7 +58,7 @@ bot.on("message", (message) => {
 
       cmd = bot.commands.get(name);
     }
-    if (!cmd) return message.channel.send("I couldn't find that command.");
+    if (!cmd) return message.channel.send("That command is non-existent in my directory.");
 
     cmd.run(bot, message, args);
   }
