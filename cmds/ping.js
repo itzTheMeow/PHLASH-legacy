@@ -1,6 +1,6 @@
 const Discord = module.require('discord.js');
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args, cleanArgs) => {
   message.channel.send("Pong!");
 }
 module.exports.help = {

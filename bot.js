@@ -46,6 +46,7 @@ bot.on("message", (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(bot.prefix)) {
     let args = message.content.substring(bot.prefix.length).trim().split(/ +/g);
+    let cleanArgs = message.cleanContent.substring(bot.prefix.length).trim().split(/ +/g);
 
     let cmd = bot.commands.get(args[0].toLowerCase());
 
@@ -63,7 +64,7 @@ bot.on("message", (message) => {
         "That command is non-existent in my directory."
       );
 
-    cmd.run(bot, message, args);
+    cmd.run(bot, message, args, cleanArgs);
   }
 });
 

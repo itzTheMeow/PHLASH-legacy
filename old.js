@@ -230,23 +230,6 @@ client.on("message", async (message) => {
         message.reply("you are not a server admin!");
       }
       break;
-    case "help":
-    case "commands":
-    case "cmds":
-      message.channel.send(Embeds.help);
-      break;
-
-    case "say":
-    case "repeat":
-    case "speak":
-      message.delete();
-      if (message.member.isStaff()) {
-        message.channel.send(args.join(" "));
-      } else {
-        message.channel.send(cleanArgs.join(" "));
-      }
-      break;
-
     case "newbie":
     case "newmembers":
       message.delete();
