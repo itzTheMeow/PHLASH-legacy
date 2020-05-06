@@ -5,11 +5,11 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   let otherCommands = [];
   let utilityCommands = [];
 
-  Object.keys(bot.commandDescriptions).forEach(cmd => {
+  Object.keys(bot.commandDescriptions).forEach((cmd) => {
     cmds.push(cmd);
   });
 
-  cmds.forEach(cmd => {
+  cmds.forEach((cmd) => {
     if (bot.commandTypes[cmd] == "other") otherCommands.push(cmd);
     if (bot.commandTypes[cmd] == "utility") utilityCommands.push(cmd);
   });
@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   if (cmd in bot.commandDescriptions) {
     let aliases = [];
 
-    bot.commandAliases.forEach(a => {
+    bot.commandAliases.forEach((a) => {
       if (a.for == cmd) aliases = a.aliases;
     });
 
@@ -80,5 +80,5 @@ module.exports.help = {
   description: "Shows you the commands in the bot.",
   usage: "help <command>",
   type: "other",
-  commandAliases: ["commands", "cmds"]
+  commandAliases: ["commands", "cmds"],
 };

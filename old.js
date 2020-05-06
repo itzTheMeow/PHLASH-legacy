@@ -289,9 +289,6 @@ client.on("message", async (message) => {
         );
       message.channel.send(infoEmbed);
       break;
-    case "prices":
-      message.channel.send(Embeds.costs);
-      break;
     case "weather":
       weather.find({ search: args.join(" "), degreeType: "C" }, function (
         err,
@@ -610,38 +607,6 @@ client.on("message", async (message) => {
         message.reply("You are making too many requests, try again later.");
       }
       break;
-    case "ping":
-    case "uptime":
-    case "latency":
-    case "test":
-      let tripTime = Date.now();
-      message.channel.send("1 second...").then((m) => {
-        let ping = m.createdTimestamp - message.createdTimestamp;
-        m.delete(10);
-        let botInfoEmbed = new Discord.RichEmbed()
-          .setTitle(client.user.username + " Info")
-          .addField("Bot Latency", real_ms(ping), true)
-          .addField("API Latency", real_ms(Math.round(client.ping)), true)
-          .addField("Message Trip Time", real_ms(Date.now() - tripTime), true)
-          .addField("Uptime", real_ms(client.uptime), true)
-          .addField("Startup Time", real_ms(client.startupTime), true)
-          .setColor(config.color);
-        message.channel.send(botInfoEmbed);
-      });
-      break;
-    case "invite":
-      let inviteEmbed = new Discord.RichEmbed()
-        .setDescription(
-          `Here is your **[invite link](https://discord.gg/Mgk5HMU)** for Phlame Development.`
-        )
-        .setColor("0xFD0000")
-        .setFooter("Phlame Development | Invite Link")
-        .setAuthor("Invite Link");
-
-      message.reply(inviteEmbed);
-
-      break;
-
     case "dev":
     case "apply-dev":
       if (message.channel.type != "dm") return;
