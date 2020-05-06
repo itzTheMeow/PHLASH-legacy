@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const config = require("./config.json");
 bot.prefix = config.prefix;
-bot.config = config
+bot.config = config;
 
 bot.commands = new Discord.Collection();
 bot.commandDescriptions = new Object();
@@ -16,9 +16,9 @@ bot.commandRequirements = new Object();
 fs.readdir("./cmds/", (err, files) => {
   if (err) throw err;
 
-  let jsFiles = files.filter(f => f.split(".").pop() === "js");
+  let jsFiles = files.filter((f) => f.split(".").pop() === "js");
 
-  jsFiles.forEach(f => {
+  jsFiles.forEach((f) => {
     let props = require(`./cmds/${f}`);
     bot.commands.set(props.help.name, props);
     bot.commandDescriptions[props.help.name] = props.help.description;
@@ -28,7 +28,7 @@ fs.readdir("./cmds/", (err, files) => {
     if (props.help.commandAliases.length >= 1)
       bot.commandAliases.push({
         for: props.help.name,
-        aliases: props.help.commandAliases
+        aliases: props.help.commandAliases,
       });
   });
   console.log(`Loaded ${jsFiles.length} commands!`);
@@ -37,25 +37,22 @@ fs.readdir("./cmds/", (err, files) => {
 bot.on("ready", () => {
   console.log(`Bot ${bot.user.username} is on!`);
   bot.user.setActivity(bot.guilds.size + " servers. | " + bot.prefix + "help", {
-    type: "WATCHING"
+    type: "WATCHING",
   });
   bot.user.setStatus("online", null);
 });
 
-bot.on("message", message => {
+bot.on("message", (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(bot.prefix)) {
-    let args = message.content
-      .substring(bot.prefix.length)
-      .trim()
-      .split(/ +/g);
+    let args = message.content.substring(bot.prefix.length).trim().split(/ +/g);
 
     let cmd = bot.commands.get(args[0].toLowerCase());
 
     if (!cmd) {
       let name;
 
-      bot.commandAliases.forEach(a => {
+      bot.commandAliases.forEach((a) => {
         if (a.aliases.includes(args[0].toLowerCase())) name = a.for;
       });
 
