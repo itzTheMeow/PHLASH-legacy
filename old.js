@@ -152,51 +152,8 @@ client.on(`message`, function (message) {
   }
 });
 
-client.on("guildMemberAdd", (member) => {
-  console.log(member.user.tag + " has joined the server!");
-  var role = member.guild.roles.find("name", "Verify");
-  member.addRole(role);
-
-  let joinEmbed = new Discord.RichEmbed()
-    .setTitle(`Welcome to our server!`)
-    .setTimestamp()
-    .setColor("#380606")
-    .setDescription(`Welcome, ${member}! Stay to watch the Phlame Burn!`)
-    .setImage("https://i.ibb.co/yhXzp3N/phlame-gif.gif");
-
-  client.channels.get(`704771723941118033`).send(joinEmbed);
-});
-
-client.on("guildMemberRemove", (member) => {
-  console.log(member.user.tag + " has left the server!");
-
-  let leaveEmbed = new Discord.RichEmbed()
-    .setTitle("Goodbye...")
-    .setTimestamp()
-    .setColor("#380606")
-    .setDescription(`Sad to see you leave ${member}. See you soon!`)
-    .setImage("https://i.ibb.co/yhXzp3N/phlame-gif.gif");
-
-  client.channels.get(`704771723941118033`).send(leaveEmbed);
-});
-
 client.on("message", async (message) => {
-  if (message.author.bot) return;
-  // This is where we'll put our code.
-  if (message.content.indexOf(config.prefix) !== 0) return;
-
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const cleanArgs = message.cleanContent
-    .slice(config.prefix.length)
-    .trim()
-    .split(/ +/g);
-  cleanArgs.shift();
-  const command = args.shift().toLowerCase();
-
   switch (command) {
-    case "meow":
-      message.channel.send("Meow is lazy.");
-      break;
     case "memer":
     case "meme":
       let reddit = ["memes", "dankmemes"];
