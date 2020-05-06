@@ -21,6 +21,5 @@ module.exports.help = {
   name: "ping",
   description: "Replies with latency information.",
   usage: "ping",
-  type: "utility",
   commandAliases: ["uptime", "latency", "test"],
 };

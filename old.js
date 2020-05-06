@@ -105,14 +105,6 @@ client.on("message", async (message) => {
         message.reply("you are not a server admin!");
       }
       break;
-    case "setstatus":
-      if (message.member.isAdmin()) {
-        client.user.setStatus(args[0]);
-        message.channel.send("I have set the status!");
-      } else {
-        message.reply("you are not a server admin!");
-      }
-      break;
     case "newbie":
     case "newmembers":
       message.delete();

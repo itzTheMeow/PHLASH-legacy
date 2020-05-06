@@ -2,21 +2,12 @@ const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
   let cmds = [];
-  let otherCommands = [];
-  let utilityCommands = [];
 
   Object.keys(bot.commandDescriptions).forEach((cmd) => {
     cmds.push(cmd);
   });
 
-  cmds.forEach((cmd) => {
-    if (bot.commandTypes[cmd] == "other") otherCommands.push(cmd);
-    if (bot.commandTypes[cmd] == "utility") utilityCommands.push(cmd);
-  });
-
   cmds.sort();
-  otherCommands.sort();
-  utilityCommands.sort();
 
   const helpEmbed = new Discord.RichEmbed()
     .setAuthor("Help", message.author.displayAvatarURL)
@@ -30,18 +21,8 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
         bot.prefix +
         " help <command>` to view help on a specific command.\nThese are **[**required**]** and **<**optional**>** fields."
     );
-    helpEmbed.addField(
-      "All Commands | " + cmds.length,
-      "`" + cmds.join("`, `") + "`"
-    );
-    helpEmbed.addField(
-      "Utility | " + utilityCommands.length,
-      "`" + utilityCommands.join("`, `") + "`"
-    );
-    helpEmbed.addField(
-      "Other | " + otherCommands.length,
-      "`" + otherCommands.join("`, `") + "`"
-    );
+    helpEmbed.setTitle("All Commands | " + cmds.length);
+    helpEmbed.setDescription("`" + cmds.join("`, `") + "`");
     message.channel.send(helpEmbed);
     return;
   }
@@ -61,13 +42,10 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
     helpEmbed.setFooter("The " + cmd + " Command");
     helpEmbed.setDescription(
-      bot.commandDescriptions[cmd] +
-        "\n\n**Usage:** " +
-        bot.commandUsages[cmd] +
-        "\n**Type:** " +
-        bot.commandTypes[cmd] +
-        "\n**Aliases:** " +
-        aliases
+      `${bot.commandDescriptions[cmd]}
+
+**Usage:** ${bot.commandUsages[cmd]}
+**Aliases:** ${aliases}`
     );
     message.channel.send(helpEmbed);
     return;

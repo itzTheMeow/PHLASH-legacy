@@ -38,7 +38,6 @@ bot.db = db;
 bot.commands = new Discord.Collection();
 bot.commandDescriptions = new Object();
 bot.commandUsages = new Object();
-bot.commandTypes = new Object();
 bot.commandAliases = [];
 bot.commandRequirements = new Object();
 
@@ -53,7 +52,6 @@ fs.readdir("./cmds/", (err, files) => {
     bot.commandDescriptions[props.help.name] = props.help.description;
     bot.commandUsages[props.help.name] =
       "`" + bot.prefix + props.help.usage + "`";
-    bot.commandTypes[props.help.name] = props.help.type;
     if (props.help.commandAliases.length >= 1)
       bot.commandAliases.push({
         for: props.help.name,
