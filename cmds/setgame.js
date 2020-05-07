@@ -44,5 +44,6 @@ module.exports.help = {
   description:
     "Sets the bot's game to one of `playing`, `watching`, `listening`, and `streaming`.",
   usage: "setgame [type] [game]",
+  type: "",
   commandAliases: ["game"],
 };

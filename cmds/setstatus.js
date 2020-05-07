@@ -13,5 +13,6 @@ module.exports.help = {
   description:
     "Sets the bot's status to one of `online`, `idle`, `dnd`, and `invisible`.",
   usage: "setstatus [status]",
+  type: "",
   commandAliases: ["status"],
 };

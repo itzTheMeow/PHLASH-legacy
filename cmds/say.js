@@ -12,5 +12,6 @@ module.exports.help = {
   name: "say",
   description: "Replies with the text you say.",
   usage: "say [text]",
+  type: "",
   commandAliases: ["repeat", "speak"],
 };
