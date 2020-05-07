@@ -36,28 +36,6 @@ client.on(`message`, function (message) {
 
 client.on("message", async (message) => {
   switch (command) {
-    case "memer":
-    case "meme":
-      let reddit = ["memes", "dankmemes"];
-
-      let subreddit = reddit[Math.floor(Math.random() * reddit.length)];
-      message.channel.startTyping();
-
-      randomPuppy(subreddit)
-        .then(async (url) => {
-          await message.channel
-            .send({
-              files: [
-                {
-                  attachment: url,
-                  name: "meme.png",
-                },
-              ],
-            })
-            .then(() => message.channel.stopTyping());
-        })
-        .catch((err) => console.error(err));
-      break;
     case "newbie":
     case "newmembers":
       message.delete();
