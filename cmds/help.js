@@ -1,13 +1,16 @@
 const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
-  let cmds = [];
-
-  Object.keys(bot.commandDescriptions).forEach((cmd) => {
-    cmds.push(cmd);
-  });
-
+  let cmds = Object.keys(bot.commandDescriptions);
   cmds.sort();
+
+  let commandTypes = {};
+
+  cmds.forEach((cmd) => {
+    let type = bot.commandTypes[cmd].toTitleCase();
+    commandTypes[type] = commandTypes[type] || [];
+    commandTypes[type].push(cmd);
+  });
 
   const helpEmbed = new Discord.RichEmbed()
     .setAuthor("Help", message.author.displayAvatarURL)
@@ -23,6 +26,14 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     );
     helpEmbed.setTitle("All Commands | " + cmds.length);
     helpEmbed.setDescription("`" + cmds.join("`, `") + "`");
+
+    commandTypes.forEach((type) => {
+      helpEmbed.addField(
+        `**${type} Commands | ** ${Object.keys(type).length}`,
+        `\`${type.join("`\n`")}\``
+      );
+    });
+
     message.channel.send(helpEmbed);
     return;
   }

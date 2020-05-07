@@ -13,7 +13,8 @@
     "ms": "^2.1.2",
     "snekfetch": "^4.0.4",
     "weather-js": "^2.0.0",
-    "imgur-uploader": "^4.2.1"
+    "imgur-uploader": "^4.2.1",
+    "tcc-cdn": "^1.2.2"
   },
   "engines": {
     "node": "8.x"

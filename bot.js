@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 const fs = require("fs");
 
+require("tcc-cdn")("texttools").use();
+
 const db = {
   fetch: (key) => {
     return require("./database.json")[key];
@@ -37,10 +39,11 @@ bot.db = db;
 bot.imgur = require("imgur-uploader");
 
 bot.commands = new Discord.Collection();
-bot.commandDescriptions = new Object();
-bot.commandUsages = new Object();
+bot.commandDescriptions = {};
+bot.commandUsages = {};
 bot.commandAliases = [];
-bot.commandRequirements = new Object();
+bot.commandRequirements = {};
+bot.commandTypes = {};
 
 fs.readdir("./cmds/", (err, files) => {
   if (err) throw err;
@@ -51,9 +54,9 @@ fs.readdir("./cmds/", (err, files) => {
     let props = require(`./cmds/${f}`);
     bot.commands.set(props.help.name, props);
     bot.commandDescriptions[props.help.name] = props.help.description;
-    bot.commandUsages[props.help.name] =
-      "`" + bot.prefix + props.help.usage + "`";
-    if (props.help.commandAliases.length >= 1)
+    bot.commandUsages[props.help.name] = `\`${bot.prefix}${props.help.usage}\``;
+    bot.commandTypes[props.help.name] = props.help.type;
+    if (props.help.commandAliases.length)
       bot.commandAliases.push({
         for: props.help.name,
         aliases: props.help.commandAliases,
