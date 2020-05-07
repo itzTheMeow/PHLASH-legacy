@@ -118,7 +118,7 @@ bot.on("ready", () => {
   bot.user.setActivity(
     `the phlame burn with ${
       bot.guild.members.filter((m) => !m.user.bot).size
-    } members!"`,
+    } members!`,
     { type: "WATCHING" }
   );
   bot.user.setStatus("online", null);
