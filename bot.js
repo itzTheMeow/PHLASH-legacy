@@ -34,6 +34,7 @@ const config = require("./config.json");
 bot.prefix = config.prefix;
 bot.config = config;
 bot.db = db;
+bot.imgur = require("imgur-uploader");
 
 bot.commands = new Discord.Collection();
 bot.commandDescriptions = new Object();
@@ -162,7 +163,6 @@ bot.on("guildMemberAdd", (member) => {
     .setTimestamp()
     .setColor(bot.config.color)
     .setDescription(`Welcome, ${member.tag}! Stay to watch the phlame burn!`);
-
 
   client.channels.get("704771723941118033").send(joinEmbed);
 });
