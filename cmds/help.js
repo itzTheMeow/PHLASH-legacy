@@ -27,10 +27,11 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     helpEmbed.setTitle("All Commands | " + cmds.length);
     helpEmbed.setDescription("`" + cmds.join("`, `") + "`");
 
-    commandTypes.forEach((type) => {
+    Object.keys(commandTypes).forEach((type) => {
+      let types = commandTypes[type];
       helpEmbed.addField(
-        `**${type} Commands | ** ${Object.keys(type).length}`,
-        `\`${type.join("`\n`")}\``
+        `**${type} Commands | ** ${Object.keys(types).length}`,
+        `\`${types.join("`\n`")}\``
       );
     });
 
