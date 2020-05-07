@@ -2,14 +2,14 @@ const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
   if (message.member.isAdmin()) {
-    if (!args[0]) return message.reply(":x: Please specify a game type!");
-    let setString = args[0];
+    if (!args[1]) return message.reply(":x: Please specify a game type!");
+    let setString = args[1];
 
-    if (!args[1]) {
+    if (!args[2]) {
       message.channel.send(":x: Please specify a game!");
       return;
     }
-    let game = args.slice(1).join(" ");
+    let game = args.slice(2).join(" ");
 
     switch (setString) {
       case "playing":
@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
         });
         break;
       case "listening":
-        if (args[1] == "to") game = args.slice(2).join(" ");
+        if (args[2] == "to") game = args.slice(3).join(" ");
         bot.user.setActivity(game, { type: "LISTENING" });
         break;
       case "watching":

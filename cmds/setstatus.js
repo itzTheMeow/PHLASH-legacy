@@ -2,7 +2,7 @@ const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
   if (message.member.isAdmin()) {
-    bot.user.setStatus(args[0]);
+    bot.user.setStatus(args[1]);
     message.channel.send("I have set the status to " + args[0] + "!");
   } else {
     message.reply("you are not a server admin!");

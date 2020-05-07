@@ -2,7 +2,7 @@ const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
   if (message.member.hasPermission("MANAGE_MESSAGES")) {
-    let numberToPurge = Number(args[0]) || 10;
+    let numberToPurge = Number(args[1]) || 10;
       await message.delete();
       await message.channel.bulkDelete(numberToPurge);
   } else {
