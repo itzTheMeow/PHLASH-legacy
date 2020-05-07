@@ -40,6 +40,6 @@ module.exports.help = {
   name: "meme",
   description: "Replies with a meme.",
   usage: "meme",
-  type: "",
+  type: "fun",
   commandAliases: ["memer"],
 };

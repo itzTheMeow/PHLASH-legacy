@@ -13,6 +13,6 @@ module.exports.help = {
   name: "purge",
   description: "Purges messages a channel.",
   usage: "purge <messages>",
-  type: "",
+  type: "moderation",
   commandAliases: ["prune", "clean", "clear"],
 };

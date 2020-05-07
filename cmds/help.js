@@ -57,6 +57,6 @@ module.exports.help = {
   name: "help",
   description: "Shows you the commands in the bot.",
   usage: "help <command>",
-  type: "",
+  type: "other",
   commandAliases: ["commands", "cmds"],
 };
