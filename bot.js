@@ -5,7 +5,7 @@ app.get("/user/:id", (req, res) => {
   let user = req.params.id;
   let userObject;
   if (user) {
-    let member = bot.guild.member.fetch(user) || {};
+    let member = bot.guild.members.fetch(user) || {};
     if (!member) userObject = { error: "User Not Found" };
     else {
       userObject = {
