@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     )
     .addField("Created At", message.author.createdAt, true)
 
-    .setFooter(`Requested by ${member.user.tag}`);
+    .setFooter(`Requested by ${member.user.tag}.`);
   message.channel.send(infoEmbed);
 };
 module.exports.help = {
