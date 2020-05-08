@@ -167,7 +167,7 @@ bot.on("guildMemberAdd", (member) => {
     .setColor(bot.config.color)
     .setDescription(`Welcome, ${member.tag}! Stay to watch the phlame burn!`);
 
-  client.channels.get("704771723941118033").send(joinEmbed);
+  bot.channels.get("704771723941118033").send(joinEmbed);
 });
 
 bot.on("guildMemberRemove", (member) => {
@@ -181,7 +181,7 @@ bot.on("guildMemberRemove", (member) => {
       `Sad to see you leave ${member.tag}. Hope to see you soon!`
     );
 
-  client.channels.get(`704771723941118033`).send(leaveEmbed);
+  bot.channels.get(`704771723941118033`).send(leaveEmbed);
 });
 
 bot.login(bot.config.token);
