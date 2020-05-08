@@ -22,10 +22,10 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     helpEmbed.setDescription(
       "Use `" +
         bot.prefix +
-        " help <command>` to view help on a specific command.\nThese are **[**required**]** and **<**optional**>** fields."
+        "help <command>` to view help on a specific command.\nThese are **[**required**]** and **<**optional**>** fields."
     );
     helpEmbed.addField(
-      "All Commands | " + cmds.length,
+      "**All Commands** | **" + cmds.length + "**",
       "`" + cmds.join("`, `") + "`"
     );
 
