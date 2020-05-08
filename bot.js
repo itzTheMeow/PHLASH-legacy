@@ -5,12 +5,17 @@ app.get("/user/:id", (req, res) => {
   let user = req.params.id;
   let userObject;
   if (user) {
-    userObject = {
-      username: "User",
-      discriminator: "0000",
-      tag: "User#0000",
-      avatarURL: "https://ava.tar",
-    };
+    let member = bot.guild.member.fetch(user) || {};
+    if (!member) userObject = { error: "User Not Found" };
+    else {
+      userObject = {
+        username: member.user.username,
+        discriminator: member.user.discriminator,
+        tag: member.user.tag,
+        avatarURL: member.user.displayAvatarURL,
+        nickname: member.nickname,
+      };
+    }
   } else {
     userObject = { error: "User Not Found" };
   }
