@@ -63,38 +63,6 @@ client.on("message", async (message) => {
         await embedMessage.react(":Work:684981957322604566");
       });
       break;
-
-    case "userinfo":
-    case "ui":
-    case "avatar":
-      let toGetInfo = message.mentions.members.first() || message.member;
-      let infoEmbed = new Discord.RichEmbed()
-        .setAuthor(
-          toGetInfo.user.username + "#" + toGetInfo.user.discriminator,
-          toGetInfo.user.displayAvatarURL
-        )
-        .setDescription(`Below is ${toGetInfo.user.tag} info :arrow_down:`)
-        .setColor("#0099ff")
-        .addField("Display Name: ", `@${toGetInfo.user.username}`, true)
-        .setThumbnail(`${toGetInfo.user.displayAvatarURL}`)
-        .addField(
-          "Full Username",
-          toGetInfo.user.username + "#" + toGetInfo.user.discriminator
-        )
-        .addField("ID:", `${toGetInfo.user.id}`)
-        .addField(
-          "Joined at:",
-          `${moment
-            .utc(toGetInfo.user.joinedAt)
-            .format("dddd, MMMM Do YYYY, HH:mm:ss")}`,
-          true
-        )
-        .addField("Created At", message.author.createdAt)
-        .setFooter(
-          `Requested by, ${message.author.username}#${message.author.discriminator}`
-        );
-      message.channel.send(infoEmbed);
-      break;
     case "weather":
       weather.find({ search: args.join(" "), degreeType: "C" }, function (
         err,
