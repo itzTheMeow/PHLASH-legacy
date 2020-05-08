@@ -2,9 +2,20 @@ const express = require("express");
 const app = express();
 
 app.get("/user/:id", (req, res) => {
-  let user = req.params[0];
+  let user = req.params.id;
+  let userObject;
+  if (user) {
+    userObject = {
+      username: "User",
+      discriminator: "0000",
+      tag: "User#0000",
+      avatarURL: "https://ava.tar",
+    };
+  } else {
+    userObject = { error: "User Not Found" };
+  }
 
-  res.send(user);
+  res.send(JSON.stringify(userObject));
 });
 
 const listener = app.listen(process.env.SERVER_PORT, () => {
