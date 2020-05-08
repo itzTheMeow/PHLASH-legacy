@@ -24,8 +24,10 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
         bot.prefix +
         " help <command>` to view help on a specific command.\nThese are **[**required**]** and **<**optional**>** fields."
     );
-    helpEmbed.setTitle("All Commands | " + cmds.length);
-    helpEmbed.setDescription("`" + cmds.join("`, `") + "`");
+    helpEmbed.addField(
+      "All Commands | " + cmds.length,
+      "`" + cmds.join("`, `") + "`"
+    );
 
     Object.keys(commandTypes).forEach((type) => {
       let types = commandTypes[type];
