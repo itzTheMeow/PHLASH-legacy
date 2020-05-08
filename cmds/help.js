@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     Object.keys(commandTypes).forEach((type) => {
       let types = commandTypes[type];
       helpEmbed.addField(
-        `**${type} Commands | ** ${Object.keys(types).length}`,
+        `**${type} Commands** | **${Object.keys(types).length}**`,
         `\`${types.join("`\n`")}\``
       );
     });
