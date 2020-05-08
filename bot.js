@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const bot = new Discord.Client();
 
 app.get("/user/:id", (req, res) => {
   let user = req.params.id;
@@ -28,7 +29,6 @@ const listener = app.listen(process.env.SERVER_PORT, () => {
 });
 
 const Discord = require("discord.js");
-const bot = new Discord.Client();
 const fs = require("fs");
 
 require("tcc-cdn")("texttools").use();
