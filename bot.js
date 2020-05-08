@@ -1,4 +1,15 @@
 const express = require("express");
+const app = express();
+
+app.get("/user/:id", (req, res) => {
+  let user = req.params[0];
+
+  res.send(user);
+});
+
+const listener = app.listen(process.env.SERVER_PORT, () => {
+  console.log("Listening on port " + listener.address().port);
+});
 
 const Discord = require("discord.js");
 const bot = new Discord.Client();
