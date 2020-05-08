@@ -6,11 +6,13 @@ const bot = new Discord.Client();
 
 app.get("/user/:id", (req, res) => {
   let user = req.params.id;
-  let userObject;
+  let userObject = {};
+
   if (user) {
-    let member = bot.guild.members.get(user) || {};
-    if (!member) userObject = { error: "User Not Found" };
-    else {
+    let member = bot.guild.members.get(user);
+    if (!member) {
+      userObject = { error: "User Not Found" };
+    } else {
       userObject = {
         username: member.user.username,
         discriminator: member.user.discriminator,
