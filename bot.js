@@ -100,16 +100,17 @@ fs.readdir("./cmds/", (err, files) => {
 const { GuildMember } = require("discord.js");
 GuildMember.prototype.isAdmin = function () {
   return (
-    this.roles.has("") || // Administration
-    this.roles.has("") || // Manager
-    this.hasPermission("ADMINISTRATOR")
+    this.guild.id == bot.guild.id &&
+    (this.roles.has("692159323198980156") || // Administration
+      this.hasPermission("ADMINISTRATOR"))
   );
 };
 GuildMember.prototype.isStaff = function () {
   return (
-    this.isAdmin() ||
-    this.roles.has("") || // Moderator
-    this.roles.has("") // Developer
+    this.guild.id == bot.guild.id &&
+    (this.isAdmin() ||
+    this.roles.has("704843830255550474") || // Manager
+      this.roles.has("704844123773075487")) // Moderator
   );
 };
 
