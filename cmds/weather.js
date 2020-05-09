@@ -34,12 +34,12 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       .setAuthor(`Weather for ${current.observationpoint}`)
       .setTitle(current.skytext)
       .setThumbnail(current.imageUrl)
-      .addField("Timezone", `${location.timezone} (UTC)`, true)
       .addField("Degree Type", location.degreetype, true)
       .addField("Temperature", `${current.temperature}°`, true)
       .addField("Feels Like", `${current.feelslike}°`, true)
       .addField("Winds", current.winddisplay, true)
       .addField("Humidity", `${current.humidity}%`, true)
+      .addField("Timezone", `${location.timezone} (UTC)`, true)
       .setColor(bot.config.color);
 
     message.channel.send(weatherEmbed);
