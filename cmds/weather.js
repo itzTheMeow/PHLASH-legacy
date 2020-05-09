@@ -3,11 +3,11 @@ const Discord = module.require("discord.js");
 module.exports.run = async (bot, message, args, cleanArgs) => {
   let degree = args[1] || "C";
   let loc = args.slice(2).join(" ") || "";
-  if (args[1].length > 1) {
+  if ((args[1] || "").length > 1) {
     degree = "C";
     loc = args.slice(1).join(" ");
   } else {
-    switch (degree) {
+    switch ((args[1] || "").toUpperCase()) {
       case "F":
         degree = "F";
         break;
