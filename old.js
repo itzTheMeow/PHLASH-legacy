@@ -68,9 +68,6 @@ client.on("message", async (message) => {
         `**Server Name:** ${message.guild.name}\n**Total Members:** ${message.guild.memberCount}`
       );
       break;
-    case "rules":
-      message.channel.send(Embeds.rules.setThumbnail(message.guild.iconURL));
-      break;
     case "request-bot":
     case "apply-bot":
     case "request":
