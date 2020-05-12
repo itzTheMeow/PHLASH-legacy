@@ -23,6 +23,7 @@ app.get("/user/:id", (req, res) => {
         color: ((member.colorRole || {}).color || "").toString(16),
         roles: member.roles.map((r) => r.name),
         colorRole: (member.colorRole || {}).name,
+        rolePosition: (member.colorRole || {}).position,
       };
     }
   } else {
