@@ -5,12 +5,19 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     .setAuthor(message.guild.name, message.guild.iconURL)
     .addField(
       "**Members**",
-      `Online: ${message.guild.members.size}
-Offline: ${message.guild.members.size}
-Users: ${message.guild.members.size}
-Bots: ${message.guild.members.size}
+      `Online: ${
+        message.guild.members.filter((m) => m.presence.status !== "offline")
+          .size
+      }
+Offline: ${
+        message.guild.members.filter((m) => m.presence.status == "offline").size
+      }
+Users: ${message.guild.members.filter((m) => !m.user.bot).size}
+Bots: ${message.guild.members.filter((m) => m.user.bot).size}
 All: ${message.guild.members.size}`
     );
+
+  message.channel.send(serverInfoEmbed);
 };
 module.exports.help = {
   name: "serverinfo",
