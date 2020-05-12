@@ -1,5 +1,3 @@
-let startup = Date.now();
-
 const Emojis = {
   done: "<:Done:664324664536989726>",
   pending: "<:Pending:664324665082380298>",

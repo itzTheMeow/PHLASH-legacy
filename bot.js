@@ -3,6 +3,7 @@ const app = express();
 
 const Discord = require("discord.js");
 const bot = new Discord.Client();
+let startup = Date.now();
 
 app.get("/user/:id", (req, res) => {
   let user = req.params.id;
@@ -152,6 +153,7 @@ bot.embeds = {
 
 bot.on("ready", () => {
   bot.guild = bot.guilds.get("609287873300267008");
+  bot.startupTime = Date.now() - startup;
   console.log(`Bot ${bot.user.username} is on!`);
 
   bot.user.setActivity(

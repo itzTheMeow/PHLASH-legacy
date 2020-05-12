@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       .addField("API Latency", ms(Math.round(bot.ping)), true)
       .addField("Message Trip Time", ms(Date.now() - tripTime), true)
       .addField("Uptime", ms(bot.uptime), true)
-      //.addField("Startup Time", ms(bot.startupTime), true)
+      .addField("Startup Time", ms(bot.startupTime), true)
       .setColor(bot.config.color);
     message.channel.send(botInfoEmbed);
   });
