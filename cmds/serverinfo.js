@@ -6,11 +6,13 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     .addField(
       "**Members**",
       `Online: ${
-        message.guild.members.filter((m) => m.presence.status !== "offline")
-          .size
+        message.guild.members.filter(
+          (m) => m.user.presence.status !== "offline"
+        ).size
       }
 Offline: ${
-        message.guild.members.filter((m) => m.presence.status == "offline").size
+        message.guild.members.filter((m) => m.user.presence.status == "offline")
+          .size
       }
 Users: ${message.guild.members.filter((m) => !m.user.bot).size}
 Bots: ${message.guild.members.filter((m) => m.user.bot).size}
