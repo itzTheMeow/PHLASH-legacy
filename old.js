@@ -61,13 +61,6 @@ client.on("message", async (message) => {
         await embedMessage.react(":Work:684981957322604566");
       });
       break;
-    case "server":
-    case "serverinfo":
-    case "si":
-      message.channel.send(
-        `**Server Name:** ${message.guild.name}\n**Total Members:** ${message.guild.memberCount}`
-      );
-      break;
     case "request-bot":
     case "apply-bot":
     case "request":
