@@ -186,6 +186,8 @@ bot.on("ready", () => {
     { type: "WATCHING" }
   );
   bot.user.setStatus("online", null);
+
+  require("./modules/botRequest.js")(bot);
 });
 
 bot.on("message", (message) => {
