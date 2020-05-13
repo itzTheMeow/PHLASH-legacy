@@ -29,7 +29,6 @@ module.exports = (bot) => {
       member.user.displayAvatarURL
     );
     appEmbed.setColor(bot.config.color);
-    appEmbed.setTitle(options.name || "Unknown");
     appEmbed.setFooter("React with the emojis to accept this request.");
     Object.keys(request.application).forEach((a) => {
       appEmbed.addField(request.terms[a], options[a] || "Unknown");
