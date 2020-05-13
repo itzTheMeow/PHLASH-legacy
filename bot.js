@@ -20,7 +20,7 @@ app.get("/user/:id", (req, res) => {
         tag: member.user.tag,
         avatarURL: member.user.displayAvatarURL,
         nickname: member.nickname,
-        color: ((member.colorRole || {}).color || "").toString(16),
+        color: "#" + ((member.colorRole || {}).color || "").toString(16),
         roles: member.roles.map((r) => r.name),
         colorRole: (member.colorRole || {}).name,
         rolePosition: (member.colorRole || {}).position,
