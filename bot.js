@@ -173,6 +173,14 @@ bot.embeds = {
       "We are glad that you decided to join as a member of PHLAME Development!"
     ),
 };
+bot.Emojis = {
+  checkmark: "664324664536989726",
+  tick: "664324665082380298",
+  x: "664324664482332691",
+  customer: "680242224449323054",
+  work: "684981957322604566",
+  phlame: "706423782402949150",
+};
 
 bot.on("ready", () => {
   bot.guild = bot.guilds.get("609287873300267008");
