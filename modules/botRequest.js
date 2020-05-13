@@ -36,5 +36,12 @@ module.exports = (bot) => {
     return appEmbed;
   };
 
+  request.sendEmbed = async function (bot, channel, member, embed) {
+    let botRequest = await channel.send(embed);
+    await botRequest.react(bot.Emojis.checkmark);
+    await botRequest.react(bot.Emohis.tick);
+    await botRequest.react(bot.Emojis.x);
+  };
+
   bot.request = request;
 };

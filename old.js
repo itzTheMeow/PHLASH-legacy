@@ -1,14 +1,3 @@
-const Emojis = {
-  done: "<:Done:664324664536989726>",
-  pending: "<:Pending:664324665082380298>",
-  notpossible: "<:NotPossible:664324664482332691>",
-  logo: "<:PhantomCreators:669365062489866251>",
-  enquire: "<:Enquire:680254554180288521>",
-  customer: "<:Customer:680242224449323054>",
-  work: "<:Work:684981957322604566>",
-  phlame: "<:phlame:706423782402949150>",
-};
-
 client.on(`message`, function (message) {
   if (message.channel.name === "verify") {
     if (message.content === "verify") {
