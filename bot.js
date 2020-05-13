@@ -27,10 +27,32 @@ app.get("/user/:id", (req, res) => {
       };
     }
   } else {
-    userObject = { error: "User Not Found" };
+    userObject = { error: "No User Specified" };
   }
 
   res.send(JSON.stringify(userObject));
+});
+app.get("/role/:id", (req, res) => {
+  let role = req.params.id;
+  let roleObject = {};
+
+  if (role) {
+    let role = bot.guild.roles.get(role);
+    if (!role) {
+      roleObject = { error: "Role Not Found" };
+    } else {
+      roleObject = {
+        name: role.name,
+        color: "#" + (role.color || "").toString(16),
+        position: role.position,
+        members: role.members.map((m) => m.id) || [],
+      };
+    }
+  } else {
+    roleObject = { error: "No Role Specified" };
+  }
+
+  res.send(JSON.stringify(roleObject));
 });
 
 const listener = app.listen(process.env.SERVER_PORT, () => {
