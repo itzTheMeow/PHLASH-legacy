@@ -41,6 +41,35 @@ module.exports = (bot) => {
     await botRequest.react(bot.Emojis.checkmark);
     await botRequest.react(bot.Emojis.tick);
     await botRequest.react(bot.Emojis.x);
+
+    let currentRequests = bot.db.fetch("requests") || [];
+    currentRequests.push(botRequest.id);
+    bot.db.set("requests", currentRequests);
+
+    return botRequest;
+  };
+
+  request.doCollector = async function (bot, channel, member, message) {
+    let filter = (r, u) =>
+      u.id == member.id &&
+      [bot.Emojis.checkmark, bot.Emojis.tick, bot.Emojis.x].includes(
+        r.emoji.id
+      );
+    let collector = message.createReactionCollector(filter);
+
+    collector.on("collect", (reaction) => {
+      switch (reaction.emoji.id) {
+        case bot.Emojis.checkmark:
+          message.channel.send("You reacted with a checkmark.");
+          break;
+        case bot.Emojis.tick:
+          message.channel.send("You reacted with a tick.");
+          break;
+        case bot.Emojis.x:
+          message.channel.send("You reacted with a x.");
+          break;
+      }
+    });
   };
 
   bot.request = request;
