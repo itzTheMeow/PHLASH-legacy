@@ -1,6 +1,23 @@
 const express = require("express");
 const app = express();
 
+const fs = require("fs");
+const https = require("https");
+const express = require("express");
+
+var options = {
+  key: fs.readFileSync("/key.pem"),
+  cert: fs.readFileSync("/cert.pem"),
+};
+
+var app = express();
+
+var server = https
+  .createServer(options, app)
+  .listen(process.env.SERVER_PORT, function () {
+    console.log("Express server listening on port " + port);
+  });
+
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 let startup = Date.now();
@@ -54,12 +71,6 @@ app.get("/role/:id", (req, res) => {
 
   res.send(JSON.stringify(roleObject));
 });
-
-const listener = app.listen(process.env.SERVER_PORT, () => {
-  console.log("Listening on port " + listener.address().port);
-});
-
-const fs = require("fs");
 
 require("tcc-cdn")("texttools").use();
 

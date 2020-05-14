@@ -15,7 +15,8 @@
     "weather-js": "^2.0.0",
     "imgur-uploader": "^4.2.1",
     "tcc-cdn": "^1.2.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "https": "^1.0.0"
   },
   "engines": {
     "node": "8.x"
