@@ -57,7 +57,7 @@ app.get("/role/:id", (req, res) => {
   let roleObject = {};
 
   if (role) {
-    let role = bot.guild.roles.get(role);
+    role = bot.guild.roles.get(role);
     if (!role) {
       roleObject = { error: "Role Not Found" };
     } else {
