@@ -13,7 +13,7 @@ var server = https
     app
   )
   .listen(process.env.SERVER_PORT, function () {
-    console.log("Express server listening on port " + port);
+    console.log("Express server listening on port " + process.env.SERVER_PORT);
   });
 
 const Discord = require("discord.js");
