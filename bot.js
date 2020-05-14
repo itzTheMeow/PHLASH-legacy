@@ -7,8 +7,8 @@ const app = express();
 var server = https
   .createServer(
     {
-      key: fs.readFileSync("/key.pem"),
-      cert: fs.readFileSync("/cert.pem"),
+      key: fs.readFileSync("../key.pem"),
+      cert: fs.readFileSync("../cert.pem"),
     },
     app
   )
