@@ -20,6 +20,11 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 let startup = Date.now();
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 app.get("/user/:id", (req, res) => {
   let user = req.params.id;
   let userObject = {};
