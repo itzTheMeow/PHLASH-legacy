@@ -1,19 +1,17 @@
 const express = require("express");
-const app = express();
-
 const fs = require("fs");
 const https = require("https");
-const express = require("express");
 
-var options = {
-  key: fs.readFileSync("/key.pem"),
-  cert: fs.readFileSync("/cert.pem"),
-};
-
-var app = express();
+const app = express();
 
 var server = https
-  .createServer(options, app)
+  .createServer(
+    {
+      key: fs.readFileSync("/key.pem"),
+      cert: fs.readFileSync("/cert.pem"),
+    },
+    app
+  )
   .listen(process.env.SERVER_PORT, function () {
     console.log("Express server listening on port " + port);
   });
