@@ -62,10 +62,10 @@ app.get("/role/:id", (req, res) => {
       roleObject = { error: "Role Not Found" };
     } else {
       roleObject = {
-        name: role.name,
         color: "#" + (role.color || "").toString(16),
-        position: role.position,
         members: role.members.map((m) => m.id) || [],
+        name: role.name,
+        position: role.position,
       };
     }
   } else {
@@ -81,6 +81,7 @@ app.get("/send/:type", (req, res) => {
 
   switch (type) {
     case "apply-dev":
+      myRes = { message: "Sent to Dev!" };
       break;
     default:
       myRes = { error: "Invalid Type" };
