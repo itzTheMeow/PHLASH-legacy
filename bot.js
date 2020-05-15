@@ -35,15 +35,15 @@ app.get("/user/:id", (req, res) => {
       userObject = { error: "User Not Found" };
     } else {
       userObject = {
-        username: member.user.username,
-        discriminator: member.user.discriminator,
-        tag: member.user.tag,
         avatarURL: member.user.displayAvatarURL,
-        nickname: member.nickname,
         color: "#" + ((member.colorRole || {}).color || "").toString(16),
-        roles: member.roles.map((r) => r.name),
         colorRole: (member.colorRole || {}).name,
+        discriminator: member.user.discriminator,
+        nickname: member.nickname,
         rolePosition: (member.colorRole || {}).position,
+        roles: member.roles.map((r) => r.name),
+        tag: member.user.tag,
+        username: member.user.username,
       };
     }
   } else {
@@ -73,6 +73,20 @@ app.get("/role/:id", (req, res) => {
   }
 
   res.send(JSON.stringify(roleObject));
+});
+
+app.get("/send/:type", (req, res) => {
+  let type = req.params.type;
+  let myRes = {};
+
+  switch (type) {
+    case "apply-dev":
+      break;
+    default:
+      myRes = { error: "Invalid Type" };
+  }
+
+  res.json(myRes);
 });
 
 require("tcc-cdn")("texttools").use();
