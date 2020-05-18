@@ -1,6 +1,8 @@
+const config = require("./config.json");
 const express = require("express");
 const fs = require("fs");
 const https = require("https");
+var Trello = require("trello-node-api")(config.trello.key, config.trello.token);
 
 const app = express();
 
@@ -120,7 +122,6 @@ const db = {
 db.get = db.set;
 db.sub = db.subtract;
 
-const config = require("./config.json");
 bot.prefix = config.prefix;
 bot.config = config;
 bot.db = db;
