@@ -2,7 +2,6 @@ const config = require("./config.json");
 const express = require("express");
 const fs = require("fs");
 const https = require("https");
-var Trello = require("trello-node-api")(config.trello.key, config.trello.token);
 
 const app = express();
 
@@ -171,7 +170,7 @@ GuildMember.prototype.isStaff = function () {
   );
 };
 
-bot.embeds = {
+bot.Embeds = {
   rules: new Discord.RichEmbed()
     .setTitle("Server Rules")
     .setColor(bot.config.color)

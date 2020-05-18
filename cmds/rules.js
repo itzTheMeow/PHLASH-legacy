@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   message.delete();
   if (message.member.isAdmin()) {
     let channel = message.mentions.channels.first() || message.channel;
-    channel.send(bot.embeds.rules);
+    channel.send(bot.Embeds.rules);
     message.channel
       .send("Rules sent to " + channel + "!")
       .then((msg) => msg.delete(4000));

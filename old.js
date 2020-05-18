@@ -23,33 +23,6 @@ client.on(`message`, function (message) {
 
 client.on("message", async (message) => {
   switch (command) {
-    case "newbie":
-    case "newmembers":
-      message.delete();
-      let newbieEmbed = new Discord.RichEmbed()
-        .setTitle("New Member Things")
-        .setColor(config.color)
-        .addField(
-          "**•** Customer",
-          "If you joined this server because you want a custom bot or any of our services, react with <:Customer:680242224449323054> for the **Customer Role**."
-        )
-        .addField(
-          "**•** Enquiry",
-          "Is there something you need to enquire about any of our products or who we are? React with <:Enquire:680243104712097981> for the **Enquiry Role**."
-        )
-        .addField(
-          "**•** Work",
-          "You think you have what it takes to become a developer in our server? React with <:Work:684981957322604566> for the **Work Role**, talk to one of the heads of the server and we will get you on the way to becoming a Phantom Developer!"
-        )
-        .setFooter(
-          "We are glad that you decided to become a part of the Phantom Creators! Please do respect others!"
-        );
-      message.channel.send(newbieEmbed).then(async (embedMessage) => {
-        await embedMessage.react(":Customer:680242224449323054");
-        await embedMessage.react(":Enquire:680243104712097981");
-        await embedMessage.react(":Work:684981957322604566");
-      });
-      break;
     case "request-bot":
     case "apply-bot":
     case "request":

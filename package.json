@@ -17,8 +17,7 @@
     "ms": "^2.1.2",
     "snekfetch": "^4.0.4",
     "tcc-cdn": "^1.2.2",
-    "weather-js": "^2.0.0",
-    "trello-node-api": "^0.0.9"
+    "weather-js": "^2.0.0"
   },
   "engines": {
     "node": "8.x"

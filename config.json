@@ -4,9 +4,5 @@
   "guild": "609287873300267008",
   "color": 1438035,
   "_color": "#15f153",
-  "memeSubreddits": ["memes", "dankmemes"],
-  "trello": {
-    "key": "",
-    "token": ""
-  }
+  "memeSubreddits": ["memes", "dankmemes"]
 }
