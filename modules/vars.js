@@ -45,5 +45,8 @@ module.exports = (bot) => {
     phlame: "706423782402949150",
   };
 
-  bot.Roles = {};
+  bot.Roles = {
+    verify: "704842444658704384",
+    casual: "633871938791669761",
+  };
 };
