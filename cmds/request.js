@@ -6,11 +6,6 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       "You must use this command in the Phlame Development server!"
     );
 
-  console.log(channel.id);
-
-  if (!message.channel.awaitMessages)
-    return message.channel.send("An error occurred. Please try again.");
-
   let embed = new Discord.RichEmbed();
   embed.setDescription(
     "Thank you for choosing Phlame Development!\nYou will be asked a few questions about your bot."
