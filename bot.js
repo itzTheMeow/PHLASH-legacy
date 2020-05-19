@@ -242,5 +242,26 @@ bot.on("guildMemberRemove", (member) => {
   bot.channels.get(`704771723941118033`).send(leaveEmbed);
 });
 
+bot.on("messageReactionAdd", (r, u) => {
+  let message = r.message;
+  if (message.guild.id !== bot.guild.id) return;
+  if (
+    ![bot.Emojis.checkmark, bot.Emojis.tick, bot.Emojis.x].includes(r.emoji.id)
+  )
+    return;
+
+  switch (reaction.emoji.id) {
+    case bot.Emojis.checkmark:
+      message.channel.send("You reacted with a checkmark.");
+      break;
+    case bot.Emojis.tick:
+      message.channel.send("You reacted with a tick.");
+      break;
+    case bot.Emojis.x:
+      message.channel.send("You reacted with a x.");
+      break;
+  }
+});
+
 bot.login(bot.config.token);
 bot.setMaxListeners(Infinity);
