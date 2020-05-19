@@ -10,7 +10,9 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
   let embed = new Discord.RichEmbed();
   embed.setDescription(
-    "Thank you for choosing Phlame Development!\nYou will be asked a few questions about your bot."
+    "Thank you for choosing Phlame Development, " +
+      message.author.username +
+      "!\nYou will be asked a few questions about your bot."
   );
   embed.setColor(bot.config.color);
   embed.setFooter("Please answer all questions to the best of your ability.");
@@ -34,7 +36,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     message.channel.send("Creation Canceled");
   }
   function finishRequest() {
-    message.channel.send(JSON.stringify(options));
+    message.channel.send("Request sent off for review!");
   }
 
   async function doQuestion() {
