@@ -258,7 +258,7 @@ bot.on("messageReactionAdd", (r, u) => {
       message.channel.send("You reacted with a tick.");
       break;
     case bot.Emojis.x:
-      message.channel.send("You reacted with a x.");
+      message.channel.send("You reacted with an x.");
       break;
   }
 });
