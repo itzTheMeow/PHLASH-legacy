@@ -61,10 +61,9 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       options[question.prop] = item;
       questionNumber++;
       doQuestion();
-      collector.stop();
     });
     collector.on("end", (collected) => {
-      console.log(`Collected ${collected.size} items`);
+      message.channel.send("Collector finished.");
     });
   }
   doQuestion();
