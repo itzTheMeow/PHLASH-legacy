@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     message.channel.send(JSON.stringify(options));
   }
 
-  function doQuestion() {
+  async function doQuestion() {
     let question = questions[questionNumber];
     if (!question) finishRequest();
 
@@ -66,7 +66,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       message.channel.send("Collector finished.");
     });
   }
-  doQuestion();
+  await doQuestion();
 };
 module.exports.help = {
   name: "request",
