@@ -62,9 +62,6 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       questionNumber++;
       doQuestion();
     });
-    collector.on("end", (collected) => {
-      message.channel.send("Collector finished.");
-    });
   }
   await doQuestion();
 };
