@@ -44,7 +44,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     embed.setDescription(question.q);
     message.channel.send(embed);
 
-    const collector = channel.createMessageCollector(
+    let collector = message.channel.createMessageCollector(
       collectorFilter,
       collectorSettings
     );
