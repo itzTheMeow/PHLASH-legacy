@@ -13,8 +13,8 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
   cmds.forEach((cmd) => {
     let type = bot.commandTypes[cmd].toTitleCase();
-    if (disabledCommandTypes.includes(type.toLowerCase()))
-      commandTypes[type] = commandTypes[type] || [];
+    if (disabledCommandTypes.includes(type.toLowerCase())) return;
+    commandTypes[type] = commandTypes[type] || [];
     commandTypes[type].push(cmd);
   });
 
