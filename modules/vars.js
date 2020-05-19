@@ -1,5 +1,7 @@
 module.exports = (bot) => {
-  bot.Channels = {};
+  bot.Channels = {
+    verify: "706739499731910717",
+  };
 
   bot.Embeds = {
     rules: new Discord.RichEmbed()
