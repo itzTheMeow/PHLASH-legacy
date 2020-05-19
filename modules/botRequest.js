@@ -21,7 +21,10 @@ module.exports = (bot) => {
     time: "Timeframe",
     host: "Hosting",
   };
-  request.footers = {};
+  request.footers = {
+    pendingRequest: "",
+    pendingCompletion: "",
+  };
   request.channels = {
     requests: "704771790806974557",
     requestsCategory: "710249283064168519",
