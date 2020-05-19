@@ -9,22 +9,24 @@ module.exports.run = async (bot, message, args) => {
     list: () => {
       done =
         "Listing custom commands...\n" +
-        Object.keys(customFunctions).join(", ");
+        Object.keys(customFunctions).join(", "); // get the commands
     },
     syncPermissions: () => {
-      let children = message.channel.parent.children;
+      let children = message.channel.parent.children; // get the channels in the category
       done = "Syncing permissions of " + children.size + " channels...";
       children.forEach((child) => {
-        child.lockPermissions();
+        child.lockPermissions(); // lockPermissions syncs the permissions of a channel
       });
     },
   };
 
   if (code.startsWith("::")) {
-    let command = args[1].substring(2);
-    let func = customFunctions[command];
+    // if there is a custom command (::command)
+    let command = args[1].substring(2); // get the command from the args
+    let func = customFunctions[command]; // get the command from the object
     if (func) func();
-    else done = "Command not found. Try ::list";
+    // if the command is found, run it
+    else done = "Command not found. Try ::list"; // if the command isnt found, say so
   } else {
     try {
       done = eval(code); // eval the code
