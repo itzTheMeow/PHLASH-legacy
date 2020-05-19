@@ -5,10 +5,32 @@ module.exports.run = async (bot, message, args) => {
   let code = args.slice(1).join(" "); // get the code
   let done = "Nothing 3:"; // declare the evaluated code
 
-  try {
-    done = eval(code); // eval the code
-  } catch (e) {
-    done = e; // catch any errors
+  let customFunctions = {
+    list: () => {
+      done =
+        "Listing custom commands...\n" +
+        Object.keys(customFunctions).join(", ");
+    },
+    syncPermissions: () => {
+      let children = message.channel.parent.children;
+      done = "Syncing permissions of " + children.size + " channels...";
+      children.forEach((child) => {
+        child.lockPermissions();
+      });
+    },
+  };
+
+  if (code.startsWith("::")) {
+    let command = args[1].substring(2);
+    let func = customFunctions[command];
+    if (func) func();
+    else done = "Command not found. Try ::list";
+  } else {
+    try {
+      done = eval(code); // eval the code
+    } catch (e) {
+      done = e; // catch any errors
+    }
   }
 
   message.channel.send("```js\n" + code + "``````" + done + "```"); // send the code
