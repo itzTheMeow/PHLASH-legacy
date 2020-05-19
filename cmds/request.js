@@ -23,9 +23,9 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     questions.push({ prop: k, q: bot.request.application[k] });
   });
 
-  let awaitMessagesFilter = (m) =>
+  let collectorFilter = (m) =>
     m.author.id == message.author.id && m.channel.id == message.channel.id;
-  let awaitMessagesSettings = { max: 1 };
+  let collectorSettings = { max: 1 };
 
   function cancelRequest() {
     questionNumber = Infinity;
@@ -41,19 +41,29 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
     embed.setDescription(question.q);
     message.channel.send(embed);
-    message.channel
-      .awaitMessages(awaitMessagesFilter, awaitMessagesSettings)
-      .then((msgs) => {
-        let msg = msgs.first() || {};
-        if (msg.content == "cancel") return cancelRequest();
 
-        let item = msg.content;
-        if (!item) return doQuestion();
+    const collector = channel.createMessageCollector(
+      collectorFilter,
+      collectorSettings
+    );
+    collector.on("collect", (msg) => {
+      if (msg.content == "cancel") return cancelRequest();
 
-        options[question.prop] = item;
-        questionNumber++;
+      let item = msg.content;
+      if (!item) {
+        message.channel.send("No message content found. Please try again");
         doQuestion();
-      });
+        return;
+      }
+
+      options[question.prop] = item;
+      questionNumber++;
+      doQuestion();
+      collector.stop();
+    });
+    collector.on("end", (collected) => {
+      console.log(`Collected ${collected.size} items`);
+    });
   }
   doQuestion();
 };
