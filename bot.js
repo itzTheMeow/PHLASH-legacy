@@ -248,7 +248,8 @@ bot.on("messageReactionAdd", (r, u) => {
     message.guild.id !== bot.guild.id ||
     !message.author.bot ||
     u.bot ||
-    ![bot.Emojis.checkmark, bot.Emojis.x].includes(r.emoji.id)
+    ![bot.Emojis.checkmark, bot.Emojis.x].includes(r.emoji.id) ||
+    !message.embeds
   )
     return;
 
