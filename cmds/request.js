@@ -44,7 +44,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     message.channel
       .awaitMessages(awaitMessagesFilter, awaitMessagesSettings)
       .then((msgs) => {
-        let msg = msgs.first();
+        let msg = msgs.first() || {};
         if (msg.content == "cancel") return cancelRequest();
 
         let item = msg.content;
