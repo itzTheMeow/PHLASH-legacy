@@ -252,7 +252,7 @@ bot.on("messageReactionAdd", (r, u) => {
   )
     return;
 
-  switch (reaction.emoji.id) {
+  switch (r.emoji.id) {
     case bot.Emojis.checkmark:
       message.channel.send("You reacted with a checkmark.");
       break;
