@@ -58,5 +58,9 @@ module.exports = (bot) => {
     return botRequest;
   };
 
+  request.createChannel = async function (bot, member, options, embed) {
+    let reqChannel = await bot.guild.createChannel(options.name);
+  };
+
   bot.request = request;
 };
