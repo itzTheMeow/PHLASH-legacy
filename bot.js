@@ -244,9 +244,11 @@ bot.on("guildMemberRemove", (member) => {
 
 bot.on("messageReactionAdd", (r, u) => {
   let message = r.message;
-  if (message.guild.id !== bot.guild.id) return;
   if (
-    ![bot.Emojis.checkmark, bot.Emojis.tick, bot.Emojis.x].includes(r.emoji.id)
+    message.guild.id !== bot.guild.id ||
+    !message.author.bot ||
+    u.bot ||
+    ![bot.Emojis.checkmark, bot.Emojis.x].includes(r.emoji.id)
   )
     return;
 
