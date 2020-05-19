@@ -21,6 +21,8 @@ module.exports = (bot) => {
     time: "Timeframe",
     host: "Hosting",
   };
+  request.footers = {};
+  request.channels = {};
 
   request.getEmbed = function (bot, member, options) {
     let appEmbed = new Discord.RichEmbed();
