@@ -40,6 +40,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     if (!question) finishRequest();
 
     embed.setDescription(question.q);
+    message.channel.send(embed);
     message.channel
       .awaitMessages(awaitMessagesFilter, awaitMessagesSettings)
       .then((msgs) => {
