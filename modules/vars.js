@@ -1,3 +1,5 @@
+const Discord = require("discord.js");
+
 module.exports = (bot) => {
   bot.Channels = {
     verify: "706739499731910717",
