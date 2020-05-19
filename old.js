@@ -1,26 +1,3 @@
-client.on(`message`, function (message) {
-  if (message.channel.name === "verify") {
-    if (message.content === "verify") {
-      var verifyRole = message.member.guild.roles.find("name", "Casual");
-      var role = message.member.guild.roles.find("name", "Verify");
-      message.member.removeRole(role);
-      message.member.addRole(verifyRole);
-      message.author.send({
-        embed: {
-          color: 0xfd0000,
-          title: "Phlame Development",
-          description: `You have been Verified `,
-          footer: {
-            text: "Phlash",
-          },
-          timestamp: new Date(),
-        },
-      });
-      message.delete();
-    } else message.delete();
-  }
-});
-
 client.on("message", async (message) => {
   switch (command) {
     case "request-bot":

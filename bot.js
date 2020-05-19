@@ -182,6 +182,7 @@ bot.on("ready", () => {
 
   require("./modules/botRequest.js")(bot);
   require("./modules/vars.js")(bot);
+  require("./modules/verify.js")(bot);
 });
 
 bot.on("message", (message) => {
