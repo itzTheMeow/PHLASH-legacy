@@ -169,6 +169,26 @@ GuildMember.prototype.isStaff = function () {
   );
 };
 
+Object.prototype.sort = function () {
+  let o = this;
+  var sorted = {},
+    key,
+    a = [];
+
+  for (key in o) {
+    if (o.hasOwnProperty(key)) {
+      a.push(key);
+    }
+  }
+
+  a.sort();
+
+  for (key = 0; key < a.length; key++) {
+    sorted[a[key]] = o[a[key]];
+  }
+  return sorted;
+};
+
 bot.on("ready", () => {
   bot.guild = bot.guilds.get("609287873300267008");
   bot.startupTime = Date.now() - startup;
