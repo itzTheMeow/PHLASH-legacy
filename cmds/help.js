@@ -5,6 +5,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   cmds.sort();
 
   let commandTypes = {};
+  let totalCommands = 0;
 
   let disabledCommandTypes = [];
   if (!bot.config.admins.includes(message.author.id))
@@ -14,8 +15,10 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   cmds.forEach((cmd) => {
     let type = bot.commandTypes[cmd].toTitleCase();
     if (disabledCommandTypes.includes(type.toLowerCase())) return;
+
     commandTypes[type] = commandTypes[type] || [];
     commandTypes[type].push(cmd);
+    totalCommands++;
   });
 
   commandTypes = commandTypes.sort();
@@ -33,7 +36,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
         "help <command>` to view help on a specific command.\nThese are **[**required**]** and **<**optional**>** fields."
     );
     helpEmbed.addField(
-      "**All Commands** | **" + cmds.length + "**",
+      "**All Commands** | **" + totalCommands + "**",
       "`" + cmds.join("`, `") + "`"
     );
 
