@@ -75,12 +75,14 @@ module.exports = (bot) => {
     return reqChannel;
   };
 
-  request.newRequest = async function (bot, member, options, NEW) {
-    let embed = request.getEmbed(bot, member, options, NEW);
+  request.newRequest = async function (bot, member, options) {
+    let newE = request.getEmbed(bot, member, options, true);
+    let oldE = request.getEmbed(bot, member, options, false);
+
     let channel = await request.createChannel(bot, member, options.name);
-    let message = await bot.request.sendEmbed(bot, channel, member, embed);
+    let message = await bot.request.sendEmbed(bot, channel, member, newE);
     let requests = bot.guild.channels.get(request.channels.requests);
-    await bot.request.sendEmbed(bot, requests, member, embed);
+    await bot.request.sendEmbed(bot, requests, member, oldE);
   };
 
   bot.request = request;
