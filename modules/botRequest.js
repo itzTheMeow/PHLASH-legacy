@@ -59,7 +59,13 @@ module.exports = (bot) => {
   };
 
   request.createChannel = async function (bot, member, options, embed) {
-    let reqChannel = await bot.guild.createChannel(options.name);
+    let reqChannel = await bot.guild.createChannel(options.name, {
+      type: "text",
+      topic: `Test`,
+      position: 9999,
+      parent: bot.request.channels.requestsCategory,
+      permissionOverwrites: {},
+    });
   };
 
   bot.request = request;
