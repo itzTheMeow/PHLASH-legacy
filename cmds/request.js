@@ -26,9 +26,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   });
 
   let collectorFilter = (m) =>
-    m.author.id == message.author.id &&
-    m.channel.id == message.channel.id &&
-    !message.author.bot;
+    m.author.id == message.author.id && m.channel.id == message.channel.id;
   let collectorSettings = { max: 1, time: 600000 };
 
   function cancelRequest() {
@@ -44,7 +42,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     if (!question) finishRequest();
 
     embed.setDescription(question.q);
-    message.channel.send(embed);
+    await message.channel.send(embed);
 
     let collector = message.channel.createMessageCollector(
       collectorFilter,
