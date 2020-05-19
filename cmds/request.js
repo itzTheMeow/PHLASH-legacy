@@ -15,8 +15,54 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   }
 
   let embed = new Discord.RichEmbed();
+  embed.setDescription(
+    "Thank you for choosing Phlame Development!\nYou will be asked a few questions about your bot."
+  );
   embed.setColor(bot.config.color);
   embed.setFooter("Please answer all questions to the best of your ability.");
+  await channel.send(embed);
+  embed.setFooter('Say "cancel" to cancel your request.');
+
+  let options = {};
+  let questionNumber = 0;
+  let questions = [];
+
+  Object.keys(bot.request.application).forEach((k) => {
+    questions.push({ prop: k, q: bot.request.application[k] });
+  });
+
+  let awaitMessagesFilter = (m) =>
+    m.author.id == message.author.id && m.channel.id == channel.id;
+  let awaitMessagesSettings = { max: 1, time: Infinity, errors: ["time"] };
+
+  function cancelRequest() {
+    questionNumber = Infinity;
+    channel.send("Creation Canceled");
+  }
+  function finishRequest() {
+    channel.send(JSON.stringify(options));
+  }
+
+  function doQuestion() {
+    let question = questions[questionNumber];
+    if (!question) finishRequest();
+
+    embed.setDescription(question.q);
+    channel
+      .awaitMessages(awaitMessagesFilter, awaitMessagesSettings)
+      .then((msgs) => {
+        let msg = msgs.first();
+        if (msg.content == "cancel") return cancelRequest();
+
+        let item = msg.content;
+        if (!item) return doQuestion();
+
+        options[question.prop] = item;
+        questionNumber++;
+        doQuestion();
+      });
+  }
+  doQuestion();
 };
 module.exports.help = {
   name: "request",
