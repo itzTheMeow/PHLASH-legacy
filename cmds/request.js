@@ -6,17 +6,9 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       "You must use this command in the Phlame Development server!"
     );
 
-  let channel = message.author;
-  try {
-    channel.send("Compiling bot request...");
-  } catch (e) {
-    channel = message.channel;
-    channel.send("Your DMs were off, taking the request here instead...");
-  }
-
   console.log(channel.id);
 
-  if (!channel.awaitMessages)
+  if (!message.channel.awaitMessages)
     return message.channel.send("An error occurred. Please try again.");
 
   let embed = new Discord.RichEmbed();
@@ -25,7 +17,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   );
   embed.setColor(bot.config.color);
   embed.setFooter("Please answer all questions to the best of your ability.");
-  await channel.send(embed);
+  await message.channel.send(embed);
   embed.setFooter('Say "cancel" to cancel your request.');
 
   let options = {};
@@ -37,15 +29,15 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   });
 
   let awaitMessagesFilter = (m) =>
-    m.author.id == message.author.id && m.channel.id == channel.id;
+    m.author.id == message.author.id && m.channel.id == message.channel.id;
   let awaitMessagesSettings = { max: 1, time: Infinity, errors: ["time"] };
 
   function cancelRequest() {
     questionNumber = Infinity;
-    channel.send("Creation Canceled");
+    message.channel.send("Creation Canceled");
   }
   function finishRequest() {
-    channel.send(JSON.stringify(options));
+    message.channel.send(JSON.stringify(options));
   }
 
   function doQuestion() {
@@ -53,7 +45,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     if (!question) finishRequest();
 
     embed.setDescription(question.q);
-    channel
+    message.channel
       .awaitMessages(awaitMessagesFilter, awaitMessagesSettings)
       .then((msgs) => {
         let msg = msgs.first();
