@@ -23,7 +23,7 @@ module.exports = (bot) => {
   };
   request.footers = {
     pendingRequest: "React with the emojis to accept this request.",
-    pendingCompletion: "",
+    pendingCompletion: "React to complete or cancel the request.",
   };
   request.channels = {
     requests: "704771790806974557",
@@ -31,14 +31,17 @@ module.exports = (bot) => {
     archivedCategory: "710249330740691056",
   };
 
-  request.getEmbed = function (bot, member, options) {
+  request.getEmbed = function (bot, member, options, NEW) {
+    let footer = bot.request.footers.pendingRequest;
+    if (NEW) footer = bot.request.footers.pendingCompletion;
+
     let appEmbed = new Discord.RichEmbed();
     appEmbed.setAuthor(
       `Bot Request from ${member.user.tag}`,
       member.user.displayAvatarURL
     );
     appEmbed.setColor(bot.config.color);
-    appEmbed.setFooter(bot.request.footers.pendingRequest);
+    appEmbed.setFooter(footer);
     Object.keys(request.application).forEach((a) => {
       appEmbed.addField(request.terms[a] || "Unknown", options[a] || "Unknown");
     });
