@@ -22,7 +22,7 @@ module.exports = (bot) => {
     host: "Hosting",
   };
   request.footers = {
-    pendingRequest: "",
+    pendingRequest: "React with the emojis to accept this request.",
     pendingCompletion: "",
   };
   request.channels = {
@@ -38,7 +38,7 @@ module.exports = (bot) => {
       member.user.displayAvatarURL
     );
     appEmbed.setColor(bot.config.color);
-    appEmbed.setFooter("React with the emojis to accept this request.");
+    appEmbed.setFooter(bot.request.footers.pendingRequest);
     Object.keys(request.application).forEach((a) => {
       appEmbed.addField(request.terms[a], options[a] || "Unknown");
     });
