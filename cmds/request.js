@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
   let collectorFilter = (m) =>
     m.author.id == message.author.id && m.channel.id == message.channel.id;
-  let collectorSettings = { max: 1 };
+  let collectorSettings = { max: 1, time: 600000 };
 
   function cancelRequest() {
     questionNumber = Infinity;
