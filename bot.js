@@ -243,3 +243,4 @@ bot.on("guildMemberRemove", (member) => {
 });
 
 bot.login(bot.config.token);
+bot.setMaxListeners(Infinity);
