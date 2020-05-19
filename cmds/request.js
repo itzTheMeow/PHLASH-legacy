@@ -53,9 +53,6 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
         options[question.prop] = item;
         questionNumber++;
         doQuestion();
-      })
-      .catch((e) => {
-        message.channel.send("Error: " + e);
       });
   }
   doQuestion();
