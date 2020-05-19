@@ -51,7 +51,6 @@ module.exports = (bot) => {
   request.sendEmbed = async function (bot, channel, member, embed) {
     let botRequest = await channel.send(embed);
     await botRequest.react(bot.Emojis.checkmark);
-    await botRequest.react(bot.Emojis.tick);
     await botRequest.react(bot.Emojis.x);
 
     let currentRequests = bot.db.fetch("requests") || [];
