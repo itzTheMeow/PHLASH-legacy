@@ -6,9 +6,15 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
   let commandTypes = {};
 
+  let disabledCommandTypes = [];
+  if (!bot.config.admins.includes(message.author.id))
+    disabledCommandTypes.push("admin");
+  if (message.guild.id !== bot.guild.id) disabledCommandTypes.push("server");
+
   cmds.forEach((cmd) => {
     let type = bot.commandTypes[cmd].toTitleCase();
-    commandTypes[type] = commandTypes[type] || [];
+    if (disabledCommandTypes.includes(type.toLowerCase()))
+      commandTypes[type] = commandTypes[type] || [];
     commandTypes[type].push(cmd);
   });
 
