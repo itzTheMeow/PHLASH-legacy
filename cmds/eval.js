@@ -1,7 +1,7 @@
 const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  if (message.author.id !== "521701910609133570") return; // stop if meow isnt running the command
+  if (!bot.config.admins.includes(message.author.id)) return; // stop if there isnt an admin running the command
   let code = args.slice(1).join(" "); // get the code
   let done = "Nothing 3:"; // declare the evaluated code
 
