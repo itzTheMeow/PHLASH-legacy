@@ -22,7 +22,11 @@ module.exports = (bot) => {
     host: "Hosting",
   };
   request.footers = {};
-  request.channels = {};
+  request.channels = {
+    requests: "704771790806974557",
+    requestsCategory: "710249283064168519",
+    archivedCategory: "710249330740691056",
+  };
 
   request.getEmbed = function (bot, member, options) {
     let appEmbed = new Discord.RichEmbed();
