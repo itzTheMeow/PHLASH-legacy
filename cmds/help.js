@@ -18,6 +18,8 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     commandTypes[type].push(cmd);
   });
 
+  commandTypes = commandTypes.sort();
+
   const helpEmbed = new Discord.RichEmbed()
     .setAuthor("Help", message.author.displayAvatarURL)
     .setFooter("Commands", bot.user.displayAvatarURL);
