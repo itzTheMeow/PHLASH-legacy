@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
   let awaitMessagesFilter = (m) =>
     m.author.id == message.author.id && m.channel.id == message.channel.id;
-  let awaitMessagesSettings = { max: 1, time: Infinity, errors: ["time"] };
+  let awaitMessagesSettings = { max: 1, time: 600000, errors: ["time"] };
 
   function cancelRequest() {
     questionNumber = Infinity;
