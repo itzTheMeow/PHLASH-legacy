@@ -40,7 +40,7 @@ module.exports = (bot) => {
     appEmbed.setColor(bot.config.color);
     appEmbed.setFooter(bot.request.footers.pendingRequest);
     Object.keys(request.application).forEach((a) => {
-      appEmbed.addField(request.terms[a], options[a] || "Unknown");
+      appEmbed.addField(request.terms[a] || "Unknown", options[a] || "Unknown");
     });
     return appEmbed;
   };
