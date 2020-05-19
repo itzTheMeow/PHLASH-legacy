@@ -26,7 +26,9 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   });
 
   let collectorFilter = (m) =>
-    m.author.id == message.author.id && m.channel.id == message.channel.id;
+    m.author.id == message.author.id &&
+    m.channel.id == message.channel.id &&
+    !message.author.bot;
   let collectorSettings = { max: 1, time: 600000 };
 
   function cancelRequest() {
