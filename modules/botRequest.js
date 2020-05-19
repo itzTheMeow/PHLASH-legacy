@@ -58,17 +58,27 @@ module.exports = (bot) => {
     return botRequest;
   };
 
-  request.createChannel = async function (bot, member, options, embed) {
-    let reqChannel = await bot.guild.createChannel(
-      options.name || "unknown-bot",
-      {
-        type: "text",
-        topic: `Test`,
-        position: 9999,
-        parent: bot.request.channels.requestsCategory,
-        permissionOverwrites: {},
-      }
-    );
+  request.createChannel = async function (bot, member, botName) {
+    let reqChannel = await bot.guild.createChannel(botName || "unknown-bot", {
+      type: "text",
+      topic: `Test`,
+      position: 9999,
+      parent: bot.request.channels.requestsCategory,
+      permissionOverwrites: [
+        { id: bot.guild.id, deny: ["READ_MESSAGES"] },
+        { id: member.id, allow: ["READ_MESSAGES"] },
+      ],
+    });
+
+    return reqChannel;
+  };
+
+  request.newRequest = async function (bot, member, options) {
+    let embed = request.getEmbed(bot, member, options);
+    let channel = await request.createChannel(bot, member, options.name);
+    let message = await bot.request.sendEmbed(bot, channel, member, embed);
+    let requests = bot.guild.channels.get(request.channels.requests);
+    await bot.request.sendEmbed(bot, requests, member, embed);
   };
 
   bot.request = request;
