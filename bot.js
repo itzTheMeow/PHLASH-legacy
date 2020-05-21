@@ -227,7 +227,7 @@ bot.on("message", (message) => {
     }
     if (!cmd)
       return message.channel.send(
-        "That command is non-existent in my directory."
+        `Command not found. Try \`${bot.prefix}help\` for a list of commands.`
       );
 
     cmd.run(bot, message, args, cleanArgs);
