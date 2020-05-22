@@ -272,7 +272,9 @@ bot.on("messageReactionAdd", (r, u) => {
     u.bot ||
     !message.embeds
   )
-    return;
+    return console.log(
+      "Incorrect guild ID / User is a bot / Message is not a bot / No embeds in message"
+    );
 
   let requestType = "";
   switch (message.embeds[0].footer.text) {
@@ -283,9 +285,9 @@ bot.on("messageReactionAdd", (r, u) => {
       requestType = "finish";
       break;
     default:
-      return;
+      return console.log("Invalid footer.");
   }
-  if (!requestType) return;
+  if (!requestType) return console.log("No request type.");
 
   let requestChannel =
     requestType == "finish"
@@ -293,7 +295,7 @@ bot.on("messageReactionAdd", (r, u) => {
       : message.mentions.channels.first();
   let requestUser = message.mentions.members.first();
 
-  if (!requestChannel || !requestUser) return;
+  if (!requestChannel || !requestUser) return console.log("No user/channel.");
 
   switch (r.emoji.id) {
     case bot.Emojis.checkmark:
