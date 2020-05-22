@@ -299,7 +299,19 @@ bot.on("messageReactionAdd", (r, u) => {
       message.channel.send("You reacted with a checkmark.");
       break;
     case bot.Emojis.x:
-      message.channel.send("You reacted with an x.");
+      if (requestType == "finish") {
+        if (u.id == requestUser.id) {
+          message.channel.send("Requestee canceled request.");
+        } else {
+          message.channel.send("You can not cancel this request!");
+        }
+      } else {
+        if (bot.guild.members.get(u).isAdmin()) {
+          message.channel.send("Admin deleted request.");
+        } else {
+          message.channel.send("You can not delete this request!");
+        }
+      }
       break;
   }
 });
