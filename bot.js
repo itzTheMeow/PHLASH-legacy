@@ -294,6 +294,8 @@ bot.on("messageReactionAdd", (r, u) => {
       : message.mentions.channels.first();
   let requestUser = message.mentions.members.first();
 
+  if (!requestChannel || !requestUser) return;
+
   switch (r.emoji.id) {
     case bot.Emojis.checkmark:
       message.channel.send("You reacted with a checkmark.");
