@@ -152,7 +152,7 @@ fs.readdir("./cmds/", (err, files) => {
   console.log(`Loaded ${jsFiles.length} commands!`);
 });
 
-const { GuildMember } = require("discord.js");
+const { GuildMember, TextChannel } = require("discord.js");
 GuildMember.prototype.isAdmin = function () {
   return (
     this.guild.id == bot.guild.id &&
@@ -167,6 +167,38 @@ GuildMember.prototype.isStaff = function () {
     this.roles.has("704843830255550474") || // Manager
       this.roles.has("704844123773075487")) // Moderator
   );
+};
+TextChannel.prototype.fetchAllMessages = async function (limit) {
+  let channel = this;
+  limit = limit || Infinity;
+
+  let pr = new Promise(async (resolve, reject) => {
+    const sum_messages = [];
+    let last_id;
+
+    while (true) {
+      const options = { limit: 100 };
+      if (last_id) {
+        options.before = last_id;
+      }
+
+      const messages = await channel.fetchMessages(options);
+
+      if (!messages.last()) {
+        resolve(sum_messages);
+        break;
+      }
+
+      sum_messages.push(...messages.array());
+      last_id = messages.last().id;
+
+      if (messages.size != 100 || sum_messages >= limit) {
+        resolve(sum_messages);
+        break;
+      }
+    }
+  });
+  return pr;
 };
 
 Object.prototype.sort = function () {
