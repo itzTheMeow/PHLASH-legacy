@@ -347,7 +347,7 @@ bot.on("messageReactionAdd", (r, u) => {
           message.channel.send("You can not cancel this request!");
         }
       } else {
-        if (bot.guild.members.get(u).isAdmin()) {
+        if ((bot.guild.members.get(u.id) || {}).isAdmin()) {
           message.channel.send("Admin deleted request.");
         } else {
           message.channel.send("You can not delete this request!");
