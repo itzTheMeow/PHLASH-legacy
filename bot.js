@@ -275,6 +275,18 @@ bot.on("messageReactionAdd", (r, u) => {
   )
     return;
 
+  let requestType = "";
+  switch (message.embeds[0].footer.text) {
+    case bot.request.footers.pendingRequest:
+      requestType = "accept";
+      break;
+    case bot.request.footers.pendingCompletion:
+      requestType = "finish";
+      break;
+    default:
+      return;
+  }
+  if (!requestType) return;
   switch (r.emoji.id) {
     case bot.Emojis.checkmark:
       message.channel.send("You reacted with a checkmark.");
