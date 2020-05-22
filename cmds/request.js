@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
   async function doQuestion() {
     let question = questions[questionNumber];
-    if (!question) finishRequest();
+    if (!question) return finishRequest();
 
     embed.setDescription(question.q);
     await message.channel.send(embed);
