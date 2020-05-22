@@ -37,6 +37,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   }
   function finishRequest() {
     message.channel.send("Request sent off for review!");
+    bot.request.newRequest(bot, message.member, options);
   }
 
   async function doQuestion() {
