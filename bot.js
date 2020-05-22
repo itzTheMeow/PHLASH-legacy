@@ -287,6 +287,11 @@ bot.on("messageReactionAdd", (r, u) => {
       return;
   }
   if (!requestType) return;
+
+  let requestChannel =
+    requestType == "finish"
+      ? message.channel
+      : message.mentions.channels.first();
   switch (r.emoji.id) {
     case bot.Emojis.checkmark:
       message.channel.send("You reacted with a checkmark.");
