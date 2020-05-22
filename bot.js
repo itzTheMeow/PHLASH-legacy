@@ -200,7 +200,6 @@ TextChannel.prototype.fetchAllMessages = async function (limit) {
   });
   return pr;
 };
-
 Object.prototype.sort = function () {
   let o = this;
   var sorted = {},
@@ -235,6 +234,13 @@ bot.on("ready", () => {
   require("./modules/botRequest.js")(bot);
   require("./modules/vars.js")(bot);
   require("./modules/verify.js")(bot);
+
+  bot.channels.get(bot.request.channels.requests).fetchAllMessages();
+  bot.channels
+    .get(bot.request.channels.requestsCategory)
+    .children.forEach((c) => {
+      c.fetchAllMessages();
+    });
 });
 
 bot.on("message", (message) => {
