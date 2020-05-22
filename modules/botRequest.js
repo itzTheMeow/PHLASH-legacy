@@ -32,8 +32,9 @@ module.exports = (bot) => {
   };
 
   request.getEmbed = function (bot, member, options, NEW) {
-    let footer = bot.request.footers.pendingRequest;
-    if (NEW) footer = bot.request.footers.pendingCompletion;
+    let footer = NEW
+      ? bot.request.footers.pendingCompletion
+      : bot.request.footers.pendingRequest;
 
     let appEmbed = new Discord.RichEmbed();
     appEmbed.setAuthor(
@@ -48,8 +49,15 @@ module.exports = (bot) => {
     return appEmbed;
   };
 
-  request.sendEmbed = async function (bot, channel, member, embed) {
-    let botRequest = await channel.send(embed);
+  request.sendEmbed = async function (bot, channel, member, embed, NEW) {
+    let botRequest;
+    if (NEW) {
+      botRequest = await channel.send(`from ${member} in ${channel}`, {
+        embed: embed,
+      });
+    } else {
+      botRequest = await channel.send(embed);
+    }
     await botRequest.react(bot.Emojis.checkmark);
     await botRequest.react(bot.Emojis.x);
 
@@ -80,9 +88,9 @@ module.exports = (bot) => {
     let oldE = request.getEmbed(bot, member, options, false);
 
     let channel = await request.createChannel(bot, member, options.name);
-    let message = await bot.request.sendEmbed(bot, channel, member, newE);
+    let message = await bot.request.sendEmbed(bot, channel, member, newE, true);
     let requests = bot.guild.channels.get(request.channels.requests);
-    await bot.request.sendEmbed(bot, requests, member, oldE);
+    await bot.request.sendEmbed(bot, requests, member, oldE, false);
   };
 
   bot.request = request;
