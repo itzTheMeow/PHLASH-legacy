@@ -50,14 +50,12 @@ module.exports = (bot) => {
   };
 
   request.sendEmbed = async function (bot, channel, member, embed, NEW) {
-    let botRequest;
-    if (NEW) {
-      botRequest = await channel.send(embed);
-    } else {
-      botRequest = await channel.send(`Request from ${member} in ${channel}!`, {
+    let botRequest = await channel.send(
+      `Request from ${member} in ${channel}!`,
+      {
         embed: embed,
-      });
-    }
+      }
+    );
     await botRequest.react(bot.Emojis.checkmark);
     await botRequest.react(bot.Emojis.x);
 
