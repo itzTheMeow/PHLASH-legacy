@@ -52,7 +52,7 @@ module.exports = (bot) => {
   request.sendEmbed = async function (bot, channel, member, embed, NEW) {
     let botRequest;
     if (NEW) {
-      botRequest = await channel.send(`from ${member} in ${channel}`, {
+      botRequest = await channel.send(`Request from ${member} in ${channel}!`, {
         embed: embed,
       });
     } else {
