@@ -14,8 +14,11 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       moment.utc(member.user.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss"),
       true
     )
-    .setFooter(`Requested by ${member.user.tag}.`);
     .addField("Created At", member.user.createdAt, true)
+    .setFooter(
+      `Requested by ${message.author.tag}.`,
+      message.author.displayAvatarURL
+    );
   message.channel.send(infoEmbed);
 };
 module.exports.help = {
