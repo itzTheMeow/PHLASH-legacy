@@ -27,7 +27,7 @@ module.exports = (bot) => {
   };
   request.channels = {
     requests: "704771790806974557",
-    requestsCategory: "710249283064168519",
+    requestsCategory: "716023962613710888",
     archivedCategory: "710249330740691056",
   };
 
