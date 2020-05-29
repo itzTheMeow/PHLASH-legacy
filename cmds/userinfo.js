@@ -14,8 +14,8 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       moment.utc(member.user.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss"),
       true
     )
-    .addField("Created At", message.author.createdAt, true)
     .setFooter(`Requested by ${member.user.tag}.`);
+    .addField("Created At", member.user.createdAt, true)
   message.channel.send(infoEmbed);
 };
 module.exports.help = {
