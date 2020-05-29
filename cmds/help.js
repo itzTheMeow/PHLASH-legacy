@@ -25,7 +25,8 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
   const helpEmbed = new Discord.RichEmbed()
     .setAuthor("Help", message.author.displayAvatarURL)
-    .setFooter("Commands", bot.user.displayAvatarURL);
+    .setFooter("Commands", bot.user.displayAvatarURL)
+    .setColor(bot.config.color);
 
   let cmd = args[1];
 
