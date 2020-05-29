@@ -7,7 +7,6 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     .setAuthor(member.user.tag, member.user.displayAvatarURL)
     .setColor(bot.config.color)
     .setThumbnail(member.user.displayAvatarURL)
-
     .addField("Nickname", member.nickname)
     .addField("ID", member.user.id, true)
     .addField(
@@ -16,7 +15,6 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       true
     )
     .addField("Created At", message.author.createdAt, true)
-
     .setFooter(`Requested by ${member.user.tag}.`);
   message.channel.send(infoEmbed);
 };
