@@ -8,11 +8,11 @@ var server = https
   .createServer(
     {
       key: fs.readFileSync("../key.pem"),
-      cert: fs.readFileSync("../cert.pem"),
+      cert: fs.readFileSync("../cert.pem")
     },
     app
   )
-  .listen(process.env.SERVER_PORT, function () {
+  .listen(process.env.SERVER_PORT, function() {
     console.log("Express server listening on port " + process.env.SERVER_PORT);
   });
 
@@ -41,9 +41,9 @@ app.get("/user/:id", (req, res) => {
         discriminator: member.user.discriminator,
         nickname: member.nickname,
         rolePosition: (member.colorRole || {}).position,
-        roles: member.roles.map((r) => r.name),
+        roles: member.roles.map(r => r.name),
         tag: member.user.tag,
-        username: member.user.username,
+        username: member.user.username
       };
     }
   } else {
@@ -63,9 +63,9 @@ app.get("/role/:id", (req, res) => {
     } else {
       roleObject = {
         color: "#" + (role.color || "").toString(16),
-        members: role.members.map((m) => m.id) || [],
+        members: role.members.map(m => m.id) || [],
         name: role.name,
-        position: role.position,
+        position: role.position
       };
     }
   } else {
@@ -93,7 +93,7 @@ app.get("/send/:type", (req, res) => {
 require("tcc-cdn")("texttools").use();
 
 const db = {
-  fetch: (key) => {
+  fetch: key => {
     return require("./database.json")[key];
   },
   add: (key, value) => {
@@ -115,7 +115,7 @@ const db = {
     data[key] = value;
     fs.writeFileSync("./database.json", JSON.stringify(data));
     return data;
-  },
+  }
 };
 db.get = db.set;
 db.sub = db.subtract;
@@ -135,9 +135,9 @@ bot.commandTypes = {};
 fs.readdir("./cmds/", (err, files) => {
   if (err) throw err;
 
-  let jsFiles = files.filter((f) => f.split(".").pop() === "js");
+  let jsFiles = files.filter(f => f.split(".").pop() === "js");
 
-  jsFiles.forEach((f) => {
+  jsFiles.forEach(f => {
     let props = require(`./cmds/${f}`);
     bot.commands.set(props.help.name, props);
     bot.commandDescriptions[props.help.name] = props.help.description;
@@ -146,21 +146,21 @@ fs.readdir("./cmds/", (err, files) => {
     if (props.help.commandAliases.length)
       bot.commandAliases.push({
         for: props.help.name,
-        aliases: props.help.commandAliases,
+        aliases: props.help.commandAliases
       });
   });
   console.log(`Loaded ${jsFiles.length} commands!`);
 });
 
 const { GuildMember, TextChannel } = require("discord.js");
-GuildMember.prototype.isAdmin = function () {
+GuildMember.prototype.isAdmin = function() {
   return (
     this.guild.id == bot.guild.id &&
     (this.roles.has("692159323198980156") || // Administration
       this.hasPermission("ADMINISTRATOR"))
   );
 };
-GuildMember.prototype.isStaff = function () {
+GuildMember.prototype.isStaff = function() {
   return (
     this.guild.id == bot.guild.id &&
     (this.isAdmin() ||
@@ -168,7 +168,7 @@ GuildMember.prototype.isStaff = function () {
       this.roles.has("704844123773075487")) // Moderator
   );
 };
-TextChannel.prototype.fetchAllMessages = async function (limit) {
+TextChannel.prototype.fetchAllMessages = async function(limit) {
   let channel = this;
   limit = limit || Infinity;
 
@@ -200,7 +200,7 @@ TextChannel.prototype.fetchAllMessages = async function (limit) {
   });
   return pr;
 };
-Object.prototype.sort = function () {
+Object.prototype.sort = function() {
   let o = this;
   var sorted = {},
     key,
@@ -225,10 +225,9 @@ bot.on("ready", () => {
   bot.startupTime = Date.now() - startup;
   console.log(`Bot ${bot.user.username} is on!`);
 
-  bot.user.setActivity(
-    `the phlame burn with ${bot.users.filter((u) => !u.bot).size} members!`,
-    { type: "WATCHING" }
-  );
+  bot.user.setActivity(`the phlame burn with ${bot.users.filter(u => !u.bot).size} members!`, {
+    type: "WATCHING"
+  });
   bot.user.setStatus("online", null);
 
   require("./modules/botRequest.js")(bot);
@@ -236,17 +235,18 @@ bot.on("ready", () => {
   require("./modules/verify.js")(bot);
 
   bot.channels.get(bot.request.channels.requests).fetchAllMessages();
-  bot.channels
-    .get(bot.request.channels.requestsCategory)
-    .children.forEach((c) => {
-      c.fetchAllMessages();
-    });
+  bot.channels.get(bot.request.channels.requestsCategory).children.forEach(c => {
+    c.fetchAllMessages();
+  });
 });
 
-bot.on("message", (message) => {
+bot.on("message", message => {
   if (message.author.bot) return;
   if (message.content.startsWith(bot.prefix)) {
-    let args = message.content.substring(bot.prefix.length).trim().split(/ +/g);
+    let args = message.content
+      .substring(bot.prefix.length)
+      .trim()
+      .split(/ +/g);
     let cleanArgs = message.cleanContent
       .substring(bot.prefix.length)
       .trim()
@@ -257,7 +257,7 @@ bot.on("message", (message) => {
     if (!cmd) {
       let name;
 
-      bot.commandAliases.forEach((a) => {
+      bot.commandAliases.forEach(a => {
         if (a.aliases.includes(args[0].toLowerCase())) name = a.for;
       });
 
@@ -272,44 +272,35 @@ bot.on("message", (message) => {
   }
 });
 
-bot.on("guildMemberAdd", (member) => {
+bot.on("guildMemberAdd", member => {
   console.log(member.user.tag + " has joined the server!");
-  var role = member.guild.roles.find((r) => r.name == "Verify");
+  var role = member.guild.roles.find(r => r.name == "Verify");
   if (role) member.addRole(role);
 
   let joinEmbed = new Discord.RichEmbed()
     .setTitle(`Welcome to the server!`)
     .setTimestamp()
     .setColor(bot.config.color)
-    .setDescription(
-      `Welcome, ${member.user.tag}! Stay to watch the Phlame burn!`
-    );
+    .setDescription(`Welcome, ${member.user.tag}! Stay to watch the Phlame burn!`);
 
   bot.channels.get("704771723941118033").send(joinEmbed);
 });
 
-bot.on("guildMemberRemove", (member) => {
+bot.on("guildMemberRemove", member => {
   console.log(member.user.tag + " has left the server!");
 
   let leaveEmbed = new Discord.RichEmbed()
     .setTitle("Goodbye...")
     .setTimestamp()
     .setColor(bot.config.color)
-    .setDescription(
-      `Sad to see you leave ${member.user.tag}. Hope to see you soon!`
-    );
+    .setDescription(`Sad to see you leave ${member.user.tag}. Hope to see you soon!`);
 
   bot.channels.get(`704771723941118033`).send(leaveEmbed);
 });
 
 bot.on("messageReactionAdd", (r, u) => {
   let message = r.message;
-  if (
-    message.guild.id !== bot.guild.id ||
-    !message.author.bot ||
-    u.bot ||
-    !message.embeds
-  )
+  if (message.guild.id !== bot.guild.id || !message.author.bot || u.bot || !message.embeds)
     return console.log(
       "Incorrect guild ID / User is a bot / Message is not a bot / No embeds in message"
     );
@@ -328,9 +319,7 @@ bot.on("messageReactionAdd", (r, u) => {
   if (!requestType) return console.log("No request type.");
 
   let requestChannel =
-    requestType == "finish"
-      ? message.channel
-      : message.mentions.channels.first();
+    requestType == "finish" ? message.channel : message.mentions.channels.first();
   let requestUser = message.mentions.members.first();
 
   if (!requestChannel || !requestUser) return console.log("No user/channel.");
