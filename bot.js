@@ -263,10 +263,7 @@ bot.on("message", message => {
 
       cmd = bot.commands.get(name);
     }
-    if (!cmd)
-      return message.channel.send(
-        `Command not found. Try \`${bot.prefix}help\` for a list of commands.`
-      );
+    if (!cmd) return;
 
     cmd.run(bot, message, args, cleanArgs);
   }
