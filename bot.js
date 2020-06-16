@@ -332,12 +332,12 @@ bot.on("messageReactionAdd", async (r, u) => {
             .then(async (reaction) => {
               areYouSureComplete.clearReactions();
               switch (reaction.emoji.id) {
-                case bot.emojis.checkmark:
+                case bot.Emojis.checkmark:
                   let archiving = await message.channel.send("Archiving request...");
                   await message.channel.edit({ parent: bot.request.archivedCategory, position: 0 });
                   await archiving.edit("Archived!");
                   break;
-                case bot.emojis.x:
+                case bot.Emojis.x:
                   message.channel.send("The request will not be archived.");
                   break;
               }
