@@ -356,7 +356,33 @@ bot.on("messageReactionAdd", async (r, u) => {
     case bot.Emojis.x:
       if (requestType == "finish") {
         if (u.id == requestUser.id) {
-          message.channel.send("Requestee canceled request.");
+          let areYouSureCancel = await message.channel.send(
+            "Please provide a reason for canceling this request. If you do not want to cancel it, say `keep`."
+          );
+
+          message.channel
+            .awaitMessages((filterM) => filterM.author.id == requestUser.id, { max: 1 })
+            .then(async (msg) => {
+              msg = msg.first();
+
+              if (msg.content.toLowerCase() == "keep") {
+                message.channel.send("This request will not be canceled.");
+              } else {
+                await message.channel.send("Deleting request...");
+                await message.channel.delete();
+
+                let deletedEmbed = new Discord.RichEmbed();
+                deletedEmbed.setAuthor(
+                  "Request deleted by " + msg.author.tag,
+                  msg.author.displayAvatarURL
+                );
+                deletedEmbed.setDescription(msg.content || "No Reason Provided");
+                deletedEmbed.setColor(bot.config.color);
+                deletedEmbed.setTimestamp();
+
+                await bot.guild.channels.get(bot.request.channels.requests).send(deletedEmbed);
+              }
+            });
         } else {
           message.channel.send("You can not cancel this request!");
         }
