@@ -378,6 +378,7 @@ bot.on("messageReactionAdd", async (r, u) => {
                 );
                 deletedEmbed.setDescription(msg.content || "No Reason Provided");
                 deletedEmbed.addField("Channel Name", "#" + (message.channel.name || "unknown"));
+                deletedEmbed.addField("Request Submitted By", requestUser.tag);
                 deletedEmbed.setColor(bot.config.color);
                 deletedEmbed.setTimestamp();
 
