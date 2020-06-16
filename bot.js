@@ -291,10 +291,7 @@ bot.on("guildMemberRemove", (member) => {
 
 bot.on("messageReactionAdd", (r, u) => {
   let message = r.message;
-  if (message.guild.id !== bot.guild.id || !message.author.bot || u.bot || !message.embeds)
-    return console.log(
-      "Incorrect guild ID / User is a bot / Message is not a bot / No embeds in message"
-    );
+  if (message.guild.id !== bot.guild.id || !message.author.bot || u.bot || !message.embeds) return;
 
   let requestType = "";
   switch (message.embeds[0].footer.text) {
@@ -305,15 +302,15 @@ bot.on("messageReactionAdd", (r, u) => {
       requestType = "finish";
       break;
     default:
-      return console.log("Invalid footer.");
+      return;
   }
-  if (!requestType) return console.log("No request type.");
+  if (!requestType) return;
 
   let requestChannel =
     requestType == "finish" ? message.channel : message.mentions.channels.first();
   let requestUser = message.mentions.members.first();
 
-  if (!requestChannel || !requestUser) return console.log("No user/channel.");
+  if (!requestChannel || !requestUser) return;
 
   switch (r.emoji.id) {
     case bot.Emojis.checkmark:
@@ -335,7 +332,7 @@ bot.on("messageReactionAdd", (r, u) => {
       }
       break;
     default:
-      return console.log("Invalid emoji.");
+      return;
   }
 });
 
