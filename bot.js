@@ -377,6 +377,7 @@ bot.on("messageReactionAdd", async (r, u) => {
                   msg.author.displayAvatarURL
                 );
                 deletedEmbed.setDescription(msg.content || "No Reason Provided");
+                deletedEmbed.addField("Channel Name", "#" + (message.channel.name || "unknown"));
                 deletedEmbed.setColor(bot.config.color);
                 deletedEmbed.setTimestamp();
 
