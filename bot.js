@@ -337,7 +337,10 @@ bot.on("messageReactionAdd", async (r, u) => {
               switch (reaction.emoji.id) {
                 case bot.Emojis.checkmark:
                   let archiving = await message.channel.send("Archiving request...");
-                  await message.channel.edit({ parent: bot.request.archivedCategory, position: 0 });
+                  await message.channel.edit({
+                    parent: bot.request.channels.archivedCategory,
+                    position: 0,
+                  });
                   await archiving.edit("Archived!");
                   break;
                 case bot.Emojis.x:
