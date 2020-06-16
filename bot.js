@@ -294,7 +294,7 @@ bot.on("messageReactionAdd", async (r, u) => {
   if (message.guild.id !== bot.guild.id || !message.author.bot || u.bot || !message.embeds) return;
 
   let requestType = "";
-  switch ((message.embeds[0] || {}).footer.text) {
+  switch (((message.embeds[0] || {}).footer || {}).text) {
     case bot.request.footers.pendingRequest:
       requestType = "accept";
       break;
