@@ -312,6 +312,8 @@ bot.on("messageReactionAdd", async (r, u) => {
 
   if (!requestChannel || !requestUser) return;
 
+  r.remove(u.id);
+
   switch (r.emoji.id) {
     case bot.Emojis.checkmark:
       if (requestType == "finish") {
