@@ -330,6 +330,7 @@ bot.on("messageReactionAdd", async (r, u) => {
               { max: 1 }
             )
             .then(async (reaction) => {
+              reaction = reaction.first();
               areYouSureComplete.clearReactions();
               switch (reaction.emoji.id) {
                 case bot.Emojis.checkmark:
