@@ -289,7 +289,7 @@ bot.on("guildMemberRemove", (member) => {
   bot.channels.get(`704771723941118033`).send(leaveEmbed);
 });
 
-bot.on("messageReactionAdd", (r, u) => {
+bot.on("messageReactionAdd", async (r, u) => {
   let message = r.message;
   if (message.guild.id !== bot.guild.id || !message.author.bot || u.bot || !message.embeds) return;
 
@@ -314,7 +314,38 @@ bot.on("messageReactionAdd", (r, u) => {
 
   switch (r.emoji.id) {
     case bot.Emojis.checkmark:
-      message.channel.send("You reacted with a checkmark.");
+      if (requestType == "finish") {
+        if (u.id == requestUser.id || (bot.guild.members.get(u.id) || {}).isAdmin()) {
+          let areYouSureComplete = await message.channel.send(
+            "Are you sure you would like to mark this request as complete?\nThis will archive it."
+          );
+          await areYouSureComplete.react(bot.Emojis.checkmark);
+          await areYouSureComplete.react(bot.Emojis.x);
+
+          areYouSureComplete
+            .awaitReactions(
+              (filterR, filterU) =>
+                filterU.id == requestUser.id &&
+                [bot.Emojis.checkmark, bot.Emojis.x].includes(filterR.emoji.id),
+              { max: 1 }
+            )
+            .then(async (reaction) => {
+              areYouSureComplete.clearReactions();
+              switch (reaction.emoji.id) {
+                case bot.emojis.checkmark:
+                  let archiving = await message.channel.send("Archiving request...");
+                  await message.channel.edit({ parent: bot.request.archivedCategory, position: 0 });
+                  await archiving.edit("Archived!");
+                  break;
+                case bot.emojis.x:
+                  message.channel.send("The request will not be archived.");
+                  break;
+              }
+            });
+        } else {
+          message.channel.send("You can not archive this request!");
+        }
+      }
       break;
     case bot.Emojis.x:
       if (requestType == "finish") {
