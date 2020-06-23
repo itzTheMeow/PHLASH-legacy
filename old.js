@@ -26,9 +26,7 @@ client.on("message", async (message) => {
         embed.setFooter("");
         message.channel.send(embed);
       }, 1000);
-      console.log(
-        message.author.username + "is submitting a request to be a Phantom Dev."
-      );
+      console.log(message.author.username + "is submitting a request to be a Phantom Dev.");
       /* create and send first question */
 
       let q = 1;
@@ -64,17 +62,13 @@ client.on("message", async (message) => {
         /* enter answers */
         if (msg.content == "cancel") {
           q = 0;
-          embed.setDescription(
-            ":negative_squared_cross_mark: Canceled your application!"
-          );
+          embed.setDescription(":negative_squared_cross_mark: Canceled your application!");
           message.channel.send(embed);
           return;
           /* cancel */
         }
         if (q == 1) {
-          app.push(
-            "+Is there any particular reason why you want to be a Phantom Developer?"
-          );
+          app.push("+Is there any particular reason why you want to be a Phantom Developer?");
           app.push(msg.content);
 
           q = 2;
@@ -92,9 +86,7 @@ client.on("message", async (message) => {
           app.push(msg.content);
 
           q = 3;
-          embed.setDescription(
-            "**3.** Are there any projects you have already worked on?"
-          );
+          embed.setDescription("**3.** Are there any projects you have already worked on?");
           message.channel.send(embed);
           return;
         }
@@ -110,15 +102,11 @@ client.on("message", async (message) => {
           return;
         }
         if (q == 4) {
-          app.push(
-            "+If yes, please give us the link to Github or Glitch project."
-          );
+          app.push("+If yes, please give us the link to Github or Glitch project.");
           app.push(msg.content);
 
           q = 5;
-          embed.setDescription(
-            "**5.** Please give us your **Discord Name and Tag**"
-          );
+          embed.setDescription("**5.** Please give us your **Discord Name and Tag**");
           message.channel.send(embed);
           return;
         }
@@ -133,9 +121,7 @@ client.on("message", async (message) => {
           message.channel.send(embed);
           return finish();
         }
-        console.log(
-          message.author.username + "submitted a request to be a Phantom Dev."
-        );
+        console.log(message.author.username + "submitted a request to be a Phantom Dev.");
       });
       break;
   }
