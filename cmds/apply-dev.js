@@ -1,7 +1,7 @@
 const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
-  this.reviewRoleID = '726332280582176829'
+  
   if (message.channel.type != "dm") return;
         /* enter app */
         //if (client.guild.members.get(message.author.id).roles.has("633871673463930880")) return message.channel.send("You're a customer. Now you can go on to apply for a bot.");
@@ -29,6 +29,8 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
         let q = 1;
         let app = [];
         /* create global variables */
+  
+        this.reviewRoleID = '726332280582176829'
     
         function finish() {
           /* finish function */
