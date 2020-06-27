@@ -19,11 +19,11 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
 
 
         setTimeout(function(){
-        embed.setDescription("**1.** Is there any particular reason why you want to be a Phantom Developer?");
+        embed.setDescription("**1.** Is there any particular reason why you want to be a PHLAME Developer?");
         embed.setFooter("");
         message.channel.send(embed);
       }, 1000)
-      console.log(message.author.username + "is submitting a request to be a Phantom Dev.")
+      console.log(message.author.username + " is submitting a request to be a PHLAME Developer.")
         /* create and send first question */
     
         let q = 1;
@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
           /* finish function */
           let codeBlock = "```diff\n" + app.join("\n\n") + "```";
           /* create code block with application */
-          bot.channels.get("704771806699061279").send(message.author.username + "\n" + codeBlock + `<@${this.reviewRoleID}>`);
+          bot.channels.get("704771806699061279").send(message.author.username + "\n" + codeBlock + `<@this.reviewRoleID>`);
           /* send to app review channel */
           //client.channels.get("632360059761983531").send(message.author.username + "\n" + codeBlock);
           /* log the app */
@@ -101,7 +101,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
               message.channel.send(embed);
               return finish();
             }
-            console.log(message.author.username + "submitted a request to be a Phantom Dev.")
+            console.log(message.author.username + " submitted a request to be a PHLAME Developer.")
         });
 };
 module.exports.help = {
