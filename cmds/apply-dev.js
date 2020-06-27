@@ -3,19 +3,16 @@ const Discord = module.require("discord.js");
 module.exports.run = async (bot, message, args, cleanArgs) => {
   
   if (message.channel.type != "dm") return;
-        /* enter app */
-        //if (client.guild.members.get(message.author.id).roles.has("633871673463930880")) return message.channel.send("You're a customer. Now you can go on to apply for a bot.");
-        /* if user already has staff role */
-        /* early break */
+       
         const embed = new Discord.RichEmbed();
         embed.setColor(bot.color);
         embed.setFooter("Please answer all questions.");
-        /* create embed */
+  
 
         if (message.channel.type !== "dm") return;
         embed.setDescription("Thank you for applying to become a Phantom Developer! I will ask you a few questions.\nSay `cancel` at any time to cancel your application.");
         message.author.send(embed);
-        /* send welcome embed */
+       
 
 
         setTimeout(function(){
@@ -24,19 +21,20 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
         message.channel.send(embed);
       }, 1000)
       console.log(message.author.username + " is submitting a request to be a PHLAME Developer.")
-        /* create and send first question */
+      
     
         let q = 1;
         let app = [];
-        /* create global variables */
+       
   
-        this.reviewRoleID = '726332280582176829'
+        
     
         function finish() {
+          this.reviewRoleID = '726332280582176829'
           /* finish function */
           let codeBlock = "```diff\n" + app.join("\n\n") + "```";
           /* create code block with application */
-          bot.channels.get("704771806699061279").send(message.author.username + "\n" + codeBlock + `<@this.reviewRoleID>`);
+          bot.channels.get("704771806699061279").send(message.author.username + "\n" + codeBlock + `<@${this.reviewRoleID}>`);
           /* send to app review channel */
           //client.channels.get("632360059761983531").send(message.author.username + "\n" + codeBlock);
           /* log the app */
