@@ -1,6 +1,7 @@
 const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
+  this.reviewRoleID = '726332280582176829'
   if (message.channel.type != "dm") return;
         /* enter app */
         //if (client.guild.members.get(message.author.id).roles.has("633871673463930880")) return message.channel.send("You're a customer. Now you can go on to apply for a bot.");
@@ -33,7 +34,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
           /* finish function */
           let codeBlock = "```diff\n" + app.join("\n\n") + "```";
           /* create code block with application */
-          bot.channels.get("704771806699061279").send(message.author.username + "\n" + codeBlock + "<@197106036899971072> <@609286417981505557> <@521701910609133570>");
+          bot.channels.get("704771806699061279").send(message.author.username + "\n" + codeBlock + `<@&${this.reviewRoleID}>`);
           /* send to app review channel */
           //client.channels.get("632360059761983531").send(message.author.username + "\n" + codeBlock);
           /* log the app */
