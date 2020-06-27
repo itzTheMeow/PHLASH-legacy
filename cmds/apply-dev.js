@@ -100,9 +100,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
             }
             console.log(message.author.username + "submitted a request to be a Phantom Dev.")
         });
-  } catch (err) {
-    return console.log(err);
-  }
+  } 
 };
 module.exports.help = {
   name: "apply-dev",
