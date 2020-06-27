@@ -1,5 +1,4 @@
 const Discord = module.require("discord.js");
-const snekfetch = require("snekfetch");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
   if (message.channel.type != "dm") return;
