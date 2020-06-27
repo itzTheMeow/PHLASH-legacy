@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
           /* finish function */
           let codeBlock = "```diff\n" + app.join("\n\n") + "```";
           /* create code block with application */
-          bot.channels.get("704771806699061279").send(message.author.username + "\n" + codeBlock + "<@&${this.reviewRoleID}>");
+          bot.channels.get("704771806699061279").send(message.author.username + "\n" + codeBlock + `<@${this.reviewRoleID}>`);
           /* send to app review channel */
           //client.channels.get("632360059761983531").send(message.author.username + "\n" + codeBlock);
           /* log the app */
