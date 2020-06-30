@@ -273,7 +273,6 @@ bot.on("guildMemberAdd", (member) => {
     .setTimestamp()
     .setColor(bot.config.color)
     .setDescription(`Welcome, ${member.user.tag}! Stay to watch the Phlame burn!`);
-    .setImage('https://i.ibb.co/yhXzp3N/phlame-gif.gif');
 
   bot.channels.get("704771723941118033").send(joinEmbed);
 });
@@ -286,7 +285,7 @@ bot.on("guildMemberRemove", (member) => {
     .setTimestamp()
     .setColor(bot.config.color)
     .setDescription(`Sad to see you leave ${member.user.tag}. Hope to see you soon!`);
-    .setImage('https://i.ibb.co/yhXzp3N/phlame-gif.gif');
+    .setImage('https://i.ibb.co/nDshx1q/IMG-20200222-132656-373.jpg');
 
   bot.channels.get(`704771723941118033`).send(leaveEmbed);
 });
