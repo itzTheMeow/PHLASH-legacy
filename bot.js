@@ -285,7 +285,6 @@ bot.on("guildMemberRemove", (member) => {
     .setTimestamp()
     .setColor(bot.config.color)
     .setDescription(`Sad to see you leave ${member.user.tag}. Hope to see you soon!`);
-    .setImage('https://i.ibb.co/nDshx1q/IMG-20200222-132656-373.jpg');
 
   bot.channels.get(`704771723941118033`).send(leaveEmbed);
 });
