@@ -272,7 +272,7 @@ bot.on("guildMemberAdd", (member) => {
     .setTitle(`Welcome to the server!`)
     .setTimestamp()
     .setColor(bot.config.color)
-    .setDescription(`Welcome, ${member.user.tag}! Stay to watch the Phlame burn!`)
+    .setDescription(`Welcome, ${member.user.tag}! Stay to watch the Phlame burn!`);
     .setImage('https://i.ibb.co/yhXzp3N/phlame-gif.gif');
 
   bot.channels.get("704771723941118033").send(joinEmbed);
@@ -285,7 +285,7 @@ bot.on("guildMemberRemove", (member) => {
     .setTitle("Goodbye...")
     .setTimestamp()
     .setColor(bot.config.color)
-    .setDescription(`Sad to see you leave ${member.user.tag}. Hope to see you soon!`)
+    .setDescription(`Sad to see you leave ${member.user.tag}. Hope to see you soon!`);
     .setImage('https://i.ibb.co/yhXzp3N/phlame-gif.gif');
 
   bot.channels.get(`704771723941118033`).send(leaveEmbed);
