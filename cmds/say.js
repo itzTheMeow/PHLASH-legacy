@@ -2,7 +2,7 @@ const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
   message.delete();
-  if (message.member.isStaff()) {
+  if (message.member.isAdmin()) {
     message.channel.send(args.slice(1).join(" "));
   } else {
     message.channel.send(cleanArgs.slice(1).join(" "));
