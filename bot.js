@@ -238,14 +238,15 @@ bot.on("ready", () => {
   );
   bot.user.setStatus("online", null);
 
-  require("./modules/botRequest.js")(bot);
   require("./modules/vars.js")(bot);
-  require("./modules/verify.js")(bot);
+  //require("./modules/botRequest.js")(bot);
 
+  /*
   bot.channels.get(bot.request.channels.requests).fetchAllMessages();
   bot.channels.get(bot.request.channels.requestsCategory).children.forEach((c) => {
     c.fetchAllMessages();
   });
+  */
 });
 
 bot.on("message", (message) => {
