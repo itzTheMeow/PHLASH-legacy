@@ -274,16 +274,14 @@ bot.on("message", (message) => {
 
 bot.on("guildMemberAdd", (member) => {
   console.log(member.user.tag + " has joined the server!");
-  var role = member.guild.roles.find((r) => r.name == "Verify");
-  if (role) member.addRole(role);
 
   let joinEmbed = new Discord.RichEmbed()
     .setTitle(`Welcome to the server!`)
     .setTimestamp()
     .setColor(bot.config.color)
-    .setDescription(`Welcome, ${member.user.tag}! Stay to watch the Phlame burn!`);
+    .setDescription(`Welcome, ${member.user.tag}!`);
 
-  bot.channels.get("704771723941118033").send(joinEmbed);
+  bot.channels.get(bot.Channels.welcome).send(joinEmbed);
 });
 
 bot.on("guildMemberRemove", (member) => {
@@ -295,7 +293,7 @@ bot.on("guildMemberRemove", (member) => {
     .setColor(bot.config.color)
     .setDescription(`Sad to see you leave ${member.user.tag}. Hope to see you soon!`);
 
-  bot.channels.get(`704771723941118033`).send(leaveEmbed);
+  bot.channels.get(bot.Channels.welcome).send(leaveEmbed);
 });
 
 bot.on("messageReactionAdd", async (r, u) => {
