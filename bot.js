@@ -226,7 +226,7 @@ Object.prototype.sort = function () {
 };
 
 bot.on("ready", () => {
-  bot.guild = bot.guilds.get("609287873300267008");
+  bot.guild = bot.guilds.get("728080391684227083");
   bot.startupTime = Date.now() - startup;
   console.log(`Bot ${bot.user.username} is on!`);
 
