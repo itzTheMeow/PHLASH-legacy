@@ -228,7 +228,7 @@ Object.prototype.sort = function () {
 bot.on("ready", () => {
   bot.guild = bot.guilds.get("728080391684227083");
   bot.startupTime = Date.now() - startup;
-  console.log(`Bot ${bot.user.username} is on!`);
+  console.log(`Bot ${bot.user.username} is on! Startup time: ${bot.startupTime}`);
 
   bot.user.setActivity(`the phlame burn with ${bot.users.filter((u) => !u.bot).size} members!`, {
     type: "WATCHING",
