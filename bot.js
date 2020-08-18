@@ -164,8 +164,13 @@ GuildMember.prototype.isStaff = function () {
   return (
     this.guild.id == bot.guild.id &&
     (this.isAdmin() ||
-    this.roles.has("704843830255550474") || // Manager
-      this.roles.has("704844123773075487")) // Moderator
+    this.roles.has("728095591216709714") || // Moderator
+      this.roles.has("728407363048046602")) // Staff
+  );
+};
+GuildMember.prototype.isHelper = function () {
+  return (
+    this.guild.id == bot.guild.id && (this.isStaff() || this.roles.has("742296975285682237")) // Helper
   );
 };
 TextChannel.prototype.fetchAllMessages = async function (limit) {
