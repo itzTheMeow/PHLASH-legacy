@@ -11,31 +11,33 @@ module.exports = (bot) => {
       .setColor(bot.config.color)
       .addField(
         "**1.** No NSFW",
-        "No NSFW is allowed in any of the channels. NSFW posted by anyone will result in a kick from our server."
+        "No NSFW is allowed in any of the channels. NSFW posted by anyone will result in a kick or ban from our server. (KB)"
       )
       .addField(
-        "**2.**No Racism",
-        "No RACISM. Everyone is equal in this server. In the year  2020, racism should not be a thing. Any racist abuse towards anyone will result in a kick from our server."
+        "**2.** No Racism",
+        "No RACISM. Everyone is equal in this server. Any racist abuse towards anyone will result in a kick from our server. (MKB)"
       )
       .addField(
-        "**3.** USE RIGHT CHANNELS",
-        "Please use the appropriate channels. The punishment ladder for this rule goes as follows: Warning, Warning, Mute, Kick."
+        "**3.** Use Correct Channels",
+        "Please use the appropriate channels. Only use a channel for its intended purpose. (WWKB)"
       )
       .addField(
-        "**4.** Read Rules!",
-        "'I didn't read the rules' is NOT an excuse. Punishment is the same for everyone (including staff) regardless of if you have read the server rules or not."
+        "**4.** Read the Rules",
+        '"I didn\'t read the rules" is NOT an excuse. Punishment is the same for everyone (including staff) regardless of if you have read the server rules or not.'
       )
       .addField(
-        "**5.** NO pinging!",
-        "Do not ping any of the Devs, Admins, Moderators or Owner unless they have told you to. If you have any questions, just ask and someone will definitely come to your aid. "
+        "**5.** No Uneccesary Pinging!",
+        "Do not ping any of the staff members unless they have told you to, or there is an emergency. If you have any questions, just ask and someone will come to your aid. (WMKB)"
       )
       .addField(
-        "**6.** NO spamming!",
-        "Do not spam. Spamming will result in a warn, then a mute, and then a ban if it is continued. Mass pinging will result in an immediate ban from our server."
+        "**6.** No Spamming!",
+        "Do not spam. Mass pinging will result in an immediate ban from our server. (WMMKB)"
       )
-      .setFooter(
-        "We are glad that you decided to join as a member of PHLAME Development!"
-      ),
+      .addField(
+        "Punishment Ladders",
+        "The punishment ladders for each rule are listed after the description. For example if the punishment ladder is `WMKB`, that means **w**arn, **m**ute, **k**ick, then **b**an."
+      )
+      .setFooter("We are glad that you decided to become a member of Leafy Development!"),
   };
 
   bot.Emojis = {
