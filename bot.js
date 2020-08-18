@@ -296,7 +296,7 @@ bot.on("guildMemberRemove", (member) => {
   bot.channels.get(bot.Channels.welcome).send(leaveEmbed);
 });
 
-bot.on("messageReactionAdd", async (r, u) => {
+/* bot.on("messageReactionAdd", async (r, u) => {
   let message = r.message;
   if (message.guild.id !== bot.guild.id || !message.author.bot || u.bot || !message.embeds) return;
 
@@ -406,7 +406,7 @@ bot.on("messageReactionAdd", async (r, u) => {
     default:
       return;
   }
-});
+});*/
 
 bot.login(bot.config.token);
 bot.setMaxListeners(Infinity);
