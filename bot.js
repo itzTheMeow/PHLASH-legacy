@@ -230,9 +230,12 @@ bot.on("ready", () => {
   bot.startupTime = Date.now() - startup;
   console.log(`Bot ${bot.user.username} is on! Startup time: ${bot.startupTime}`);
 
-  bot.user.setActivity(`the phlame burn with ${bot.users.filter((u) => !u.bot).size} members!`, {
-    type: "WATCHING",
-  });
+  bot.user.setActivity(
+    `THE GREEN GRASS GROW WITH ${bot.users.filter((u) => !u.bot).size} MEMBERS!`,
+    {
+      type: "WATCHING",
+    }
+  );
   bot.user.setStatus("online", null);
 
   require("./modules/botRequest.js")(bot);
