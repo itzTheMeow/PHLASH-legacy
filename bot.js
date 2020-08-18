@@ -4,7 +4,7 @@ const fs = require("fs");
 const https = require("https");
 const app = express();
 
-var server = https
+/*var server = https
   .createServer(
     {
       key: fs.readFileSync("../key.pem"),
@@ -14,7 +14,7 @@ var server = https
   )
   .listen(process.env.SERVER_PORT, function () {
     console.log("Express server listening on port " + process.env.SERVER_PORT);
-  });
+  });*/
 
 const Discord = require("discord.js");
 const bot = new Discord.Client();
