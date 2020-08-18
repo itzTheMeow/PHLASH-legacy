@@ -15,7 +15,7 @@
     "imgur-uploader": "^4.2.1",
     "moment": "^2.25.3",
     "ms": "^2.1.2",
-    "snekfetch": "^4.0.4",
+    "node-fetch": "^2.6.0",
     "tcc-cdn": "^1.2.2",
     "weather-js": "^2.0.0"
   },
