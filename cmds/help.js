@@ -8,8 +8,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   let totalCommands = 0;
 
   let disabledCommandTypes = [];
-  if (!bot.config.admins.includes(message.author.id))
-    disabledCommandTypes.push("admin");
+  if (!bot.config.admins.includes(message.author.id)) disabledCommandTypes.push("admin");
   if (message.guild.id !== bot.guild.id) disabledCommandTypes.push("server");
 
   cmds.forEach((cmd) => {
@@ -21,11 +20,24 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     totalCommands++;
   });
 
-  commandTypes = commandTypes.sort();
+  var sorted = {},
+    key,
+    a = [];
+  for (key in commandTypes) {
+    if (commandTypes.hasOwnProperty(key)) {
+      a.push(key);
+    }
+  }
+  a.sort();
 
-  const helpEmbed = new Discord.RichEmbed()
-    .setAuthor("Help", message.author.displayAvatarURL)
-    .setFooter("Commands", bot.user.displayAvatarURL)
+  for (key = 0; key < a.length; key++) {
+    sorted[a[key]] = commandTypes[a[key]];
+  }
+  commandTypes = sorted;
+
+  const helpEmbed = new Discord.MessageEmbed()
+    .setAuthor("Help", message.author.displayAvatarURL())
+    .setFooter("Commands", bot.user.displayAvatarURL())
     .setColor(bot.config.color);
 
   let cmd = args[1];

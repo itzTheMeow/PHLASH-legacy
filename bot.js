@@ -5,6 +5,8 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 let startup = Date.now();
 
+require("tcc-cdn")("texttools").use();
+
 const db = {
   fetch: (key) => {
     return require("./database.json")[key];
