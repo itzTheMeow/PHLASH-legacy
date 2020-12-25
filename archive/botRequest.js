@@ -32,15 +32,10 @@ module.exports = (bot) => {
   };
 
   request.getEmbed = function (bot, member, options, NEW) {
-    let footer = NEW
-      ? bot.request.footers.pendingCompletion
-      : bot.request.footers.pendingRequest;
+    let footer = NEW ? bot.request.footers.pendingCompletion : bot.request.footers.pendingRequest;
 
     let appEmbed = new Discord.RichEmbed();
-    appEmbed.setAuthor(
-      `Bot Request from ${member.user.tag}`,
-      member.user.displayAvatarURL
-    );
+    appEmbed.setAuthor(`Bot Request from ${member.user.tag}`, member.user.displayAvatarURL);
     appEmbed.setColor(bot.config.color);
     appEmbed.setFooter(footer);
     Object.keys(request.application).forEach((a) => {
@@ -50,12 +45,9 @@ module.exports = (bot) => {
   };
 
   request.sendEmbed = async function (bot, channel, member, embed, NEW) {
-    let botRequest = await channel.send(
-      `Request from ${member} in ${channel}!`,
-      {
-        embed: embed,
-      }
-    );
+    let botRequest = await channel.send(`Request from ${member} in ${channel}!`, {
+      embed: embed,
+    });
     await botRequest.react(bot.Emojis.checkmark);
     await botRequest.react(bot.Emojis.x);
 

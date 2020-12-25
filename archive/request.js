@@ -2,9 +2,7 @@ const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
   if (message.guild.id !== bot.guild.id)
-    return message.channel.send(
-      "You must use this command in the Phlame Development server!"
-    );
+    return message.channel.send("You must use this command in the Phlame Development server!");
 
   let purge = [];
 
@@ -47,10 +45,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     embed.setDescription(question.q);
     await message.channel.send(embed);
 
-    let collector = message.channel.createMessageCollector(
-      collectorFilter,
-      collectorSettings
-    );
+    let collector = message.channel.createMessageCollector(collectorFilter, collectorSettings);
     collector.on("collect", (msg) => {
       if (msg.content == "cancel") return cancelRequest();
 

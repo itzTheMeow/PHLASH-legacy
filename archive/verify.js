@@ -3,9 +3,7 @@ module.exports = (bot) => {
     if (message.channel.id !== bot.Channels.verify) return;
     if (message.author.bot) return;
     if (message.content !== "verify")
-      message.channel
-        .send("You must type `verify` in this channel!")
-        .then((m) => m.delete(4500));
+      message.channel.send("You must type `verify` in this channel!").then((m) => m.delete(4500));
 
     message.member.removeRole(bot.Roles.verify);
     message.member.addRole(bot.Roles.casual);
