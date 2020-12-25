@@ -2,6 +2,7 @@ const config = require("./config.json");
 const fs = require("fs");
 
 const Discord = require("discord.js");
+const { GuildMember } = require("discord.js");
 const bot = new Discord.Client();
 let startup = Date.now();
 
@@ -19,6 +20,10 @@ bot.commandUsages = {};
 bot.commandAliases = [];
 bot.commandRequirements = {};
 bot.commandTypes = {};
+
+GuildMember.prototype.isAdmin = function () {
+  return this.hasPermission("ADMINISTRATOR");
+};
 
 fs.readdir("./cmds/", (err, files) => {
   if (err) throw err;
