@@ -5,11 +5,11 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   let tripTime = Date.now();
   message.channel.send("1 second...").then((m) => {
     let ping = m.createdTimestamp - message.createdTimestamp;
-    m.delete(10);
-    let botInfoEmbed = new Discord.RichEmbed()
-      .setAuthor(bot.user.username + " Info", bot.user.displayAvatarURL)
+    m.delete({ delay: 10 });
+    let botInfoEmbed = new Discord.MessageEmbed()
+      .setAuthor(bot.user.username + " Info", bot.user.displayAvatarURL())
       .addField("Bot Latency", ms(ping), true)
-      .addField("API Latency", ms(Math.round(bot.ping)), true)
+      .addField("API Latency", ms(Math.round(bot.ws.ping)), true)
       .addField("Message Trip Time", ms(Date.now() - tripTime), true)
       .addField("Uptime", ms(bot.uptime), true)
       .addField("Startup Time", ms(bot.startupTime), true)
