@@ -7,33 +7,7 @@ let startup = Date.now();
 
 require("tcc-cdn")("texttools").use();
 
-const db = {
-  fetch: (key) => {
-    return require("./database.json")[key];
-  },
-  add: (key, value) => {
-    let data = require("./database.json");
-    data[key] = data[key] || 0;
-    data[key] += value;
-    fs.writeFileSync("./database.json", JSON.stringify(data));
-    return data;
-  },
-  subtract: (key, value) => {
-    let data = require("./database.json");
-    data[key] = data[key] || 0;
-    data[key] -= value;
-    fs.writeFileSync("./database.json", JSON.stringify(data));
-    return data;
-  },
-  set: (key, value) => {
-    let data = require("./database.json");
-    data[key] = value;
-    fs.writeFileSync("./database.json", JSON.stringify(data));
-    return data;
-  },
-};
-db.get = db.set;
-db.sub = db.subtract;
+const db = require("enhanced.db");
 
 bot.prefix = config.prefix;
 bot.config = config;
@@ -67,7 +41,7 @@ fs.readdir("./cmds/", (err, files) => {
 });
 
 bot.on("ready", () => {
-  bot.guild = bot.guilds.cache.get("667828697012764703");
+  bot.guild = bot.guilds.cache.get("618450314567352322");
   bot.startupTime = Date.now() - startup;
   console.log(`Bot ${bot.user.username} is on! Startup time: ${bot.startupTime}ms`);
 });
