@@ -21,8 +21,11 @@ bot.commandAliases = [];
 bot.commandRequirements = {};
 bot.commandTypes = {};
 
+GuildMember.prototype.isBotAdmin = function () {
+  return bot.config.admins.includes(this.id);
+};
 GuildMember.prototype.isAdmin = function () {
-  return this.hasPermission("ADMINISTRATOR");
+  return this.hasPermission("ADMINISTRATOR") || this.isBotAdmin();
 };
 
 fs.readdir("./cmds/", (err, files) => {
