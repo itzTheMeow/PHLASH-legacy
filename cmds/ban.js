@@ -11,9 +11,11 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   if (message.member.hasPermission("BAN_MEMBERS")) {
     if (!message.guild.me.hasPermission("BAN_MEMBERS"))
       return message.channel.send("I do not have the BAN_MEMBERS permission!");
+
     if (!member.bannable) return message.channel.send("I can not ban this member!");
+
     if (
-      member.highestRole.comparePositionTo(message.member.highestRole) >= 0 &&
+      member.roles.highest.comparePositionTo(message.member.roles.highest) >= 0 &&
       message.guild.owner.id !== message.member.id
     )
       return message.channel.send("You can not ban this member! They have too high of a role.");
@@ -23,7 +25,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       .catch((err) => {
         message.channel.send("I couldn't message the user.");
       });
-    await member.ban(reason);
+    await message.guild.members.ban(member, { reason, days: 0 });
     await message.channel.send(`Banned ${member.toString()} (ID: ${member.id}) for **${reason}**.`);
   } else {
     message.channel.send("You do not have permission to ban members!");
