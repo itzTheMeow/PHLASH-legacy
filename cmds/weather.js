@@ -1,10 +1,10 @@
 const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
-  let degree = args[1] || "C";
+  let degree = args[1] || "F";
   let loc = args.slice(2).join(" ") || "";
   if ((args[1] || "").length > 1) {
-    degree = "C";
+    degree = "F";
     loc = args.slice(1).join(" ");
   } else {
     switch ((args[1] || "").toUpperCase()) {
@@ -15,22 +15,18 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
         degree = "c";
         break;
       default:
-        degree = "C";
+        degree = "F";
     }
   }
 
-  require("weather-js").find({ search: loc, degreeType: degree }, function (
-    err,
-    result
-  ) {
+  require("weather-js").find({ search: loc, degreeType: degree }, function (err, result) {
     if (err) return message.channel.send(err);
-    if (!result.length)
-      return message.channel.send("Please enter a valid location.");
+    if (!result.length) return message.channel.send("Please enter a valid location.");
 
     var current = result[0].current;
     var location = result[0].location;
 
-    const weatherEmbed = new Discord.RichEmbed()
+    const weatherEmbed = new Discord.MessageEmbed()
       .setAuthor(`Weather for ${current.observationpoint}`)
       .setTitle(current.skytext)
       .setThumbnail(current.imageUrl)

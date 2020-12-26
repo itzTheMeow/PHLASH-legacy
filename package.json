@@ -12,7 +12,8 @@
     "moment": "^2.25.3",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
-    "tcc-cdn": "^1.3.0"
+    "tcc-cdn": "^1.3.0",
+    "weather-js": "^2.0.0"
   },
   "license": "MIT"
 }
