@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       return message.channel.send("I do not have the KICK_MEMBERS permission!");
     if (!member.kickable) return message.channel.send("I can not kick this member!");
     if (
-      member.highestRole.comparePositionTo(message.member.highestRole) >= 0 &&
+      member.roles.highest.comparePositionTo(message.member.roles.highest) >= 0 &&
       message.guild.owner.id !== message.member.id
     )
       return message.channel.send("You can not kick this member! They have too high of a role.");
