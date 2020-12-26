@@ -1,8 +1,10 @@
 const Discord = module.require("discord.js");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
-  if (message.member.hasPermission("MANAGE_MESSAGES")) {
+  if (message.channel.permissionsFor(message.member).has("MANAGE_MESSAGES")) {
     let numberToPurge = Number(args[1]) || 10;
+    if (numberToPurge > 100) numberToPurge = 100;
+    if (numberToPurge < 0) numberToPurge = 1;
     await message.delete();
     await message.channel.bulkDelete(numberToPurge);
   } else {
