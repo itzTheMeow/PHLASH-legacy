@@ -3,11 +3,14 @@ const moment = require("moment");
 
 module.exports.run = async (bot, message, args, cleanArgs) => {
   let member = message.mentions.members.first() || message.member;
-  let infoEmbed = new Discord.RichEmbed()
-    .setAuthor(member.user.tag, member.user.displayAvatarURL)
+
+  let infoEmbed = new Discord.MessageEmbed()
+    .setAuthor(
+      `${member.user.tag} (${member.nickname || member.user.username})`,
+      member.user.displayAvatarURL()
+    )
     .setColor(bot.config.color)
-    .setThumbnail(member.user.displayAvatarURL)
-    .addField("Nickname", member.nickname || "No Nickname")
+    .setThumbnail(member.user.displayAvatarURL())
     .addField("ID", member.user.id, true)
     .addField(
       "Joined at",
@@ -15,10 +18,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
       true
     )
     .addField("Created At", member.user.createdAt, true)
-    .setFooter(
-      `Requested by ${message.author.tag}.`,
-      message.author.displayAvatarURL
-    );
+    .setFooter(`Requested by ${message.author.tag}.`, message.author.displayAvatarURL());
   message.channel.send(infoEmbed);
 };
 module.exports.help = {
