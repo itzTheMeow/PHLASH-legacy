@@ -6,6 +6,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     bot.config.memeSubreddits[Math.floor(Math.random() * bot.config.memeSubreddits.length)] ||
     "memes";
 
+  let fetching = await message.channel.send("Fetching meme...");
   try {
     await nodefetch("https://www.reddit.com/r/" + subreddit + ".json?sort=top&t=week", {
       query: { limit: 800 },
@@ -19,23 +20,20 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
           return message.channel.send("It seems we are out of fresh memes! Try again later.");
 
         const randomnumber = Math.floor(Math.random() * allowed.length);
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
           .setColor(bot.config.color)
-          .setTitle("**" + allowed[randomnumber].data.title + "**")
-          .setURL("https://reddit.com" + allowed[randomnumber].data.permalink)
-          .setDescription("by " + allowed[randomnumber].data.author)
+          .setTitle(`**${allowed[randomnumber].data.title}**`)
+          .setURL(`https://reddit.com${allowed[randomnumber].data.permalink}`)
+          .setDescription(`by ${allowed[randomnumber].data.author}`)
           .setImage(allowed[randomnumber].data.url)
           .setFooter(
-            "⬆ " +
-              allowed[randomnumber].data.ups +
-              " | 💬 " +
-              allowed[randomnumber].data.num_comments
+            `⬆ ${allowed[randomnumber].data.ups} | 💬 ${allowed[randomnumber].data.num_comments}`
           );
-        message.channel.send(embed);
+        fetching.edit("", { embed });
       });
   } catch (err) {
     console.error(err);
-    message.channel.send("An error occurred.");
+    fetching.edit("An error occurred.");
   }
 };
 module.exports.help = {
