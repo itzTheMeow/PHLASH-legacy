@@ -52,6 +52,8 @@ bot.on("ready", () => {
   bot.guild = bot.guilds.cache.get("618450314567352322");
   bot.startupTime = Date.now() - startup;
   console.log(`Bot ${bot.user.username} is on! Startup time: ${bot.startupTime}ms`);
+
+  require("./modules/pollCache.js")(bot);
 });
 
 bot.on("message", (message) => {
@@ -75,6 +77,9 @@ bot.on("message", (message) => {
 
     cmd.run(bot, message, args, cleanArgs);
   }
+});
+bot.on("messageReactionAdd", (messageReaction, user) => {
+  require("./modules/pollFilter.js")(messageReaction, user);
 });
 
 bot.login(bot.config.token);
