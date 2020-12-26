@@ -12,11 +12,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
     .setColor(bot.config.color)
     .setThumbnail(member.user.displayAvatarURL())
     .addField("ID", member.user.id, true)
-    .addField(
-      "Joined at",
-      moment.utc(member.user.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss"),
-      true
-    )
+    .addField("Joined at", moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss"), true)
     .addField("Created At", member.user.createdAt, true)
     .setFooter(`Requested by ${message.author.tag}.`, message.author.displayAvatarURL());
   message.channel.send(infoEmbed);
