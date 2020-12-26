@@ -13,6 +13,8 @@ const db = require("enhanced.db");
 bot.prefix = config.prefix;
 bot.config = config;
 bot.db = db;
+bot.changelog = require("./changelog.json");
+bot.ver = Object.keys(bot.changelog)[Object.keys(bot.changelog).length - 1];
 
 bot.commands = new Discord.Collection();
 bot.commandDescriptions = {};

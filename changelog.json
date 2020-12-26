@@ -1,0 +1,10 @@
+{
+  "0.0.1": {
+    "date": "Dec 26, 2020",
+    "code": "BETA",
+    "changes": [
+      "Ported ban, eval, help, kick, meme, ping, purge, say, serverinfo, userinfo, and weather commands from v11 to v12.",
+      "Update/port poll command from TCC Bot"
+    ]
+  }
+}
