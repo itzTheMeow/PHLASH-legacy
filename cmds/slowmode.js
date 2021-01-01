@@ -27,7 +27,8 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: "slowmode",
-  alias: [
-    "setslowmode"
-  ]
+  description: "Sets slowmode in the current channel.",
+  usage: "slowmode [time]",
+  type: "utility",
+  commandAliases: [ "setslowmode" ]
 };
