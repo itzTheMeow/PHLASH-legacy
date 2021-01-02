@@ -27,5 +27,5 @@ module.exports.help = {
   description: "Sets slowmode in the current channel.",
   usage: "slowmode [time]",
   type: "utility",
-  commandAliases: [ "setslowmode" ]
+  commandAliases: [ "setslowmode", "slow", "sm" ]
 };
