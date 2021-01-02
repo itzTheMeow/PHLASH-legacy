@@ -3,11 +3,8 @@ const i4h = require("intervals-for-humans");
 
 module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("You must have `MANAGE_CHANNELS` permission to use this command!");
-  if (!args[1]) return message.channel.send("Please specify the new slowmode (in seconds)!");
-  let time = args[1];
-  if (time.toLowerCase() == "off") {
-    time = "0s";
-  }
+  let time = args.slice(1).join(" ");
+  if (!time || time.toLowerCase() == "off") time = "0s";
   time = i4h(time);
   if (!time || (time < 1000 && time != 0) || (time / 1000) != Math.floor(time / 1000)) return message.channel.send("That's not a valid time!");
   time = time / 1000;
