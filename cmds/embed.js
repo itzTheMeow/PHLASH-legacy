@@ -14,8 +14,12 @@ module.exports.run = async (client, message, args) => {
   } catch (err) {
     message.channel.send("Sorry, that JSON doesn't work as an embed due to Discord limitations.");
     return;
+  }  
+  if (message.member.isAdmin()) {
+    message.channel.send((json.content || ""), embed);
+  } else {
+  message.channel.send((json.content || ""), embed, { disableMentions: "all" });
   }
-  message.channel.send((json.content || ""), embed);
 }
 
 module.exports.help = {
