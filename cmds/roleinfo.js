@@ -13,10 +13,8 @@ module.exports.run = async (client, message, args) => {
     if (role.size >= 2) return message.channel.send("Hmm... I found multiple results for that role. Try being more specific?");
     role = role.first();
   }
-  let mentionable = "No";
-  if (role.mentionable == true) mentionable == "Yes";
-  let hoisted = "No";
-  if (role.hoisted == true) hoisted == "Yes";
+  let mentionable = role.mentionable ? "Yes" : "No"
+  let hoisted = role.hoisted ? "Yes" : "No"
   let permissions = role.permissions.serialize();
   let permissionsArray = [];
   for (let key in permissions) {
