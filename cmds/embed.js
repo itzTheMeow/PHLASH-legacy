@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
     return;
   }
   try {
-  let embed = new Discord.MessageEmbed(json);
+    let embed = new Discord.MessageEmbed(json);
   } catch (err) {
     message.channel.send("Sorry, that JSON doesn't work as an embed due to Discord limitations.");
     return;
@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
   if (message.member.isAdmin()) {
     message.channel.send((json.content || ""), embed);
   } else {
-  message.channel.send((json.content || ""), embed, { disableMentions: "all" });
+    message.channel.send((json.content || ""), embed, { disableMentions: "all" });
   }
 }
 
