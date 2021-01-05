@@ -9,13 +9,13 @@
   "dependencies": {
     "discord.js": "^12.5.1",
     "enhanced.db": "^0.3.4",
+    "hastebin-gen": "^2.0.5",
+    "intervals-for-humans": "^1.0.4",
     "moment": "^2.25.3",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "tcc-cdn": "^1.3.0",
-    "weather-js": "^2.0.0",
-    "hastebin-gen": "^2.0.5",
-    "intervals-for-humans": "^1.0.4"
+    "weather-js": "^2.0.0"
   },
   "license": "MIT"
 }
