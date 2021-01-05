@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args, cleanArgs) => {
   if (message.member.isAdmin()) {
     message.channel.send(args.slice(1).join(" "));
   } else {
-    message.channel.send(cleanArgs.slice(1).join(" "));
+    message.channel.send(args.slice(1).join(" "), { disableMentions: "all" });
   }
 };
 module.exports.help = {
