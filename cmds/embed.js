@@ -35,8 +35,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "embed",
-  description: "Replies with the equivelant embed to the given JSON.",
-  usage: "embed [embed json]",
+  description: "Sends an embed using JSON input.",
+  usage: "embed [json]",
   type: "fun",
   commandAliases: [],
 };
