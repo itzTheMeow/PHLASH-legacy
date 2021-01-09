@@ -13,6 +13,7 @@ const db = require("enhanced.db");
 bot.prefix = config.prefix;
 bot.config = config;
 bot.db = db;
+bot.color = config.color;
 bot.changelog = require("./changelog.json");
 bot.ver = Object.keys(bot.changelog)[Object.keys(bot.changelog).length - 1];
 
@@ -54,6 +55,7 @@ bot.on("ready", () => {
   bot.guild = bot.guilds.cache.get("618450314567352322");
   bot.startupTime = Date.now() - startup;
   console.log(`Bot ${bot.user.username} is on! Startup time: ${bot.startupTime}ms`);
+  bot.Embeds = require("./Embeds.js")(bot);
 
   require("./modules/pollCache.js")(bot);
 });
